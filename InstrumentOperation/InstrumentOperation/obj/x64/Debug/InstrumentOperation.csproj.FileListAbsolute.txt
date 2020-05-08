@@ -1,0 +1,14 @@
+D:\Project\InstrumentOperation\InstrumentOperation\bin\x64\Debug\InstrumentOperation.exe.config
+D:\Project\InstrumentOperation\InstrumentOperation\bin\x64\Debug\InstrumentOperation.exe
+D:\Project\InstrumentOperation\InstrumentOperation\bin\x64\Debug\InstrumentOperation.pdb
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\InstrumentOperation.csprojResolveAssemblyReference.cache
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\MainWindow.g.cs
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\App.g.cs
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\InstrumentOperation_MarkupCompile.cache
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\InstrumentOperation_MarkupCompile.lref
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\MainWindow.baml
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\InstrumentOperation.g.resources
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\InstrumentOperation.Properties.Resources.resources
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\InstrumentOperation.csproj.GenerateResource.Cache
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\InstrumentOperation.exe
+D:\Project\InstrumentOperation\InstrumentOperation\obj\x64\Debug\InstrumentOperation.pdb
