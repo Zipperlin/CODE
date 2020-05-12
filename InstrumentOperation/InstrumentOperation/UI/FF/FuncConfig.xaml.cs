@@ -13,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InstrumentOperation
+namespace InstrumentOperation.UI
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// StandardFunc.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StandardFunc : Page
     {
-        public MainWindow()
+        public StandardFunc()
         {
             InitializeComponent();
-        }
-
-        /**
-         * test for string 
-         **/
-        public void StringTest()
-        {
-            string msg = (string)Application.Current.FindResource("MainWindowTitle");
-            MessageBox.Show(msg);
         }
     }
 }

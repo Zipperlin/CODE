@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--基本信息-->
+    <sys:String x:Key="MainWindowTitle">仪表操作系统</sys:String>
+    <sys:String x:Key="SysBasicInfo">设备基本信息</sys:String>
+    <sys:String x:Key="TransferConfig">转换块配置</sys:String>
+    <sys:String x:Key="FuncConfig">标准功能块配置</sys:String>
+    <sys:String x:Key="Manufacturer">厂商信息</sys:String>
+    <sys:String x:Key="MANUFAC_ID">厂商ID</sys:String>
+    <sys:String x:Key="DEV_TYPE">设备类型</sys:String>
+    <sys:String x:Key="Device_Name">设备名称</sys:String>
+    <sys:String x:Key="Device_Version">设备版本号</sys:String>
+    <sys:String x:Key="DD_VersionDD">版本号</sys:String>
+    <sys:String x:Key="Add">添加</sys:String>
+    <sys:String x:Key="Delete">删除</sys:String>
+    <sys:String x:Key="Save">保存</sys:String>
+    <!--转换块-->
+    <sys:String x:Key="SerialNum">序号</sys:String>
+    <sys:String x:Key="Para_Name">参数名称</sys:String>
+    <sys:String x:Key="Type_Name">类型</sys:String>
+    <sys:String x:Key="Para_Type">变量类型</sys:String>
+    <sys:String x:Key="Para_List">种类下拉列表(AI/AO/DI/DO/UINT/NULL)</sys:String>
+    <sys:String x:Key="Pro_IO">读写权限(Read_Only/Read_Write)</sys:String>
+    <sys:String x:Key="ParaDisplay_List">参数显示列表</sys:String>
+    <sys:String x:Key="VIEW_1">VIEW_1</sys:String>
+    <sys:String x:Key="VIEW_2">VIEW_2</sys:String>
+    <sys:String x:Key="VIEW_3">VIEW_3</sys:String>
+    <sys:String x:Key="VIEW_4_1">VIEW_4_1</sys:String>
+    <sys:String x:Key="VIEW_4_2">VIEW_4_2</sys:String>
+    <sys:String x:Key="VIEW_4_3">VIEW_4_3</sys:String>
+    <sys:String x:Key="VIEW_4_4">VIEW_4_4</sys:String>
+    <sys:String x:Key="Help_Info">帮助信息</sys:String>
+    <!--标准块-->
+    <sys:String x:Key="ChannelNum">通道号</sys:String>
+    <sys:String x:Key="Cycle_Para">转换块中定义的循环变量</sys:String>
+    <sys:String x:Key="RangeConfig">量程设置</sys:String>
+    <sys:String x:Key="RangeConfig_Top">量程上限</sys:String>
+    <sys:String x:Key="RangeConfig_End">量程下限</sys:String>
+    <sys:String x:Key="Unit">单位</sys:String>
+</ResourceDictionary>
