@@ -1,7 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    <!--基本信息-->
+    <!--module info-->
+    <sys:String x:Key="FF">FF</sys:String>
+    <sys:String x:Key="HART">HART</sys:String>
+    <sys:String x:Key="PA">PA</sys:String>
+    <sys:String x:Key="SelectInfo">协议模块选择</sys:String>
+    <sys:String x:Key="OK">选择</sys:String>
+    <sys:String x:Key="Cancel">取消</sys:String>
+    
+    <!--FF基本信息-->
     <sys:String x:Key="MainWindowTitle">仪表操作系统</sys:String>
     <sys:String x:Key="SysBasicInfo">设备基本信息</sys:String>
     <sys:String x:Key="TransferConfig">转换块配置</sys:String>
@@ -15,7 +23,8 @@
     <sys:String x:Key="Add">添加</sys:String>
     <sys:String x:Key="Delete">删除</sys:String>
     <sys:String x:Key="Save">保存</sys:String>
-    <!--转换块-->
+    
+    <!--FF转换块-->
     <sys:String x:Key="SerialNum">序号</sys:String>
     <sys:String x:Key="Para_Name">参数名称</sys:String>
     <sys:String x:Key="Type_Name">类型</sys:String>
@@ -31,7 +40,8 @@
     <sys:String x:Key="VIEW_4_3">VIEW_4_3</sys:String>
     <sys:String x:Key="VIEW_4_4">VIEW_4_4</sys:String>
     <sys:String x:Key="Help_Info">帮助信息</sys:String>
-    <!--标准块-->
+    
+    <!--FF标准块-->
     <sys:String x:Key="ChannelNum">通道号</sys:String>
     <sys:String x:Key="Cycle_Para">转换块中定义的循环变量</sys:String>
     <sys:String x:Key="RangeConfig">量程设置</sys:String>

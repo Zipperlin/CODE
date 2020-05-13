@@ -12,23 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using InstrumentOperation.ViewModel;
 
-namespace InstrumentOperation
+namespace InstrumentOperation.UI
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// StandardFunc.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StandardFunc : Page
     {
-        private HomeViewModel _viewModel;
-
-        public MainWindow()
+        public StandardFunc()
         {
             InitializeComponent();
-            _viewModel = new HomeViewModel();
-            frame.Source= new Uri("pack://application:,,,/View/FF/FF.xaml", UriKind.Absolute);
-            DataContext = _viewModel;
-        }      
+        }
     }
 }

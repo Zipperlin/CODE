@@ -8,16 +8,32 @@
         mc:Ignorable="d"
         Title="{StaticResource MainWindowTitle}" Height="500" Width="900">
     <Grid>
-        <TabControl  TabStripPlacement="Left"> 
-            <TabItem Header="{StaticResource SysBasicInfo}" Height="100" Width="200" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <Frame Source="/InstrumentOperation;component/UI/FF/SysBasicInfo.xaml"/>
-            </TabItem>
-            <TabItem Header="{StaticResource TransferConfig}" Height="100" Width="200" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <Frame Source="/InstrumentOperation;component/UI/FF/TransferConfig.xaml"/>
-            </TabItem>
-            <TabItem Header="{StaticResource FuncConfig}" Height="100" Width="200"  HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <Frame Source="/InstrumentOperation;component/UI/FF/FuncConfig.xaml"/>
-            </TabItem>
-        </TabControl>
+        <Menu Background="#dddddd" FontFamily="黑体" FontSize="14">
+            <MenuItem Header="文件">
+                <MenuItem Header="新建" Command="{Binding Command_CreateNewFile}">
+                </MenuItem>
+                <MenuItem Header="打开">
+                </MenuItem>
+                <MenuItem Header="关闭">
+                </MenuItem>
+                <MenuItem Header="保存">
+                </MenuItem>
+                <MenuItem Header="退出">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="生成">
+                <MenuItem Header="生成">
+                </MenuItem>
+                <MenuItem Header="清理">
+                </MenuItem>
+                <MenuItem Header="重新生成">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="帮助">
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="10,22,10,0" Source="{Binding Data_PageSource}"/>
+        </Grid>
     </Grid>
 </Window>

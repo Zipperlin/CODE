@@ -1,0 +1,24 @@
+﻿<Page x:Class="InstrumentOperation.UI.FF.FF"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InstrumentOperation.UI.FF"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="FF">
+
+    <Grid>
+        <TabControl  TabStripPlacement="Left">
+            <TabItem Header="{StaticResource SysBasicInfo}" Height="100" Width="200" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Frame Source="/InstrumentOperation;component/View/FF/SysBasicInfo.xaml"/>
+            </TabItem>
+            <TabItem Header="{StaticResource TransferConfig}" Height="100" Width="200" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Frame Source="/InstrumentOperation;component/View/FF/TransferConfig.xaml"/>
+            </TabItem>
+            <TabItem Header="{StaticResource FuncConfig}" Height="100" Width="200"  HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Frame Source="/InstrumentOperation;component/View/FF/FuncConfig.xaml"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

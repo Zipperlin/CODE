@@ -10,25 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InstrumentOperation.ViewModel;
 
-namespace InstrumentOperation
+namespace InstrumentOperation.View.PopDialog
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// Module_Select.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Module_Select : Window
     {
-        private HomeViewModel _viewModel;
-
-        public MainWindow()
+        public ModuleViewModel _moduleViewModel;
+        public Module_Select()
         {
             InitializeComponent();
-            _viewModel = new HomeViewModel();
-            frame.Source= new Uri("pack://application:,,,/View/FF/FF.xaml", UriKind.Absolute);
-            DataContext = _viewModel;
-        }      
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            _moduleViewModel = new ModuleViewModel();
+            DataContext = _moduleViewModel;
+        }
     }
 }
