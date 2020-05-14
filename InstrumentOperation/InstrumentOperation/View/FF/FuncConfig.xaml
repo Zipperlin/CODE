@@ -4,39 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InstrumentOperation.UI"
+      xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="500"
       Title="StandardFunc">
-
     <Grid>
-        <TabControl HorizontalAlignment="Stretch" Margin="20,20,20,100" VerticalAlignment="Stretch">
-            <TabItem Header="标准功能块1" Height="50" Width="100">
+        <TabControl  Margin="20,20,20,100"  Style="{DynamicResource MetroCircleButtonStyle}" BorderThickness="1" mah:TabControlHelper.Underlined="SelectedTabItem" mah:TabControlHelper.CloseButtonEnabled="True">
+            <mah:MetroTabItem Header="标准功能块1" Height="25" Width="100" >
                 <Grid Background="#FFE5E5E5">
                     <DataGrid Grid.Row="0">
-                        <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="FontFamily" Value="SimHei"/>
-                                <Setter Property="Foreground" Value="#104E8B"/>
-                                <Setter Property="FontSize" Value="15" />
-                                <Setter Property="Height" Value="Auto" />
-                                <Setter Property="BorderThickness" Value="1" />
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            </Style>
-                        </DataGrid.ColumnHeaderStyle>
-                        <DataGrid.RowStyle>
-                            <Style TargetType="{x:Type DataGridRow}">
-                                <Style.Triggers>
-                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
-                                        <Setter Property="Background" Value="#1874CD" />
-                                    </Trigger>
-                                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
-                                        <Setter Property="Background" Value="#1C86EE" />
-                                    </Trigger>
-                                </Style.Triggers>
-                                <Setter Property="Foreground" Value="Yellow"/>
-                                <Setter Property="FontFamily" Value="SimHei"/>
-                            </Style>
-                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="{StaticResource SerialNum}" Width="*"/>
                             <DataGridTextColumn Header="{StaticResource Cycle_Para}" Width="2*"/>
@@ -60,13 +37,13 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
-            </TabItem>
-            <TabItem Header="标准功能块2" Height="50" Width="100">
+            </mah:MetroTabItem>
+            <mah:MetroTabItem Header="标准功能块2" Height="25" Width="100">
                 <Grid Background="#FFE5E5E5"/>
-            </TabItem>
+            </mah:MetroTabItem>
         </TabControl>
-        <Button Content="{StaticResource Add}" HorizontalAlignment="Right" Margin="0,0,320,20" VerticalAlignment="Bottom" Width="125" Height="35"/>
-        <Button Content="{StaticResource Delete}" HorizontalAlignment="Right" Margin="0,0,170,20" VerticalAlignment="Bottom" Width="125" Height="35"/>
-        <Button Content="{StaticResource Save}" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="125" Height="35"/>
+        <Button Content="{StaticResource Add}" HorizontalAlignment="Right" Margin="0,0,320,20" VerticalAlignment="Bottom" Width="125" Height="35" Style="{DynamicResource MetroCircleButtonStyle}"/>
+        <Button Content="{StaticResource Delete}" HorizontalAlignment="Right" Margin="0,0,170,20" VerticalAlignment="Bottom" Width="125" Height="35" Style="{DynamicResource MetroCircleButtonStyle}"/>
+        <Button Content="{StaticResource Save}" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="125" Height="35" Style="{DynamicResource MetroCircleButtonStyle}"/>
     </Grid>
 </Page>

@@ -4,21 +4,26 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InstrumentOperation.UI"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="500" d:DesignWidth="500"
       Title="{StaticResource SysBasicInfo}">
     <Grid>
-        <Label Content="{StaticResource Manufacturer}" Margin="30,13,0,0" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
-        <Label Content="{StaticResource MANUFAC_ID}" Margin="30,63,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
-        <Label Content="{StaticResource DEV_TYPE}" Margin="30,113,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
-        <Label Content="{StaticResource Device_Name}" Margin="30,163,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
-        <Label Content="{StaticResource Device_Version}" Margin="30,213,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
-        <Label Content="{StaticResource DD_VersionDD}" Margin="30,263,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="111,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="111,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="111,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="111,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="111,213,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="111,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <Label Content="{StaticResource Manufacturer}" Margin="91,26,-61,0" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
+        <Label Content="{StaticResource MANUFAC_ID}" Margin="91,76,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        
+        <Label Content="{StaticResource DEV_TYPE}" Margin="401,26,-61,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
+        <Label Content="{StaticResource Device_Name}" Margin="401,76,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
+        <Label Content="{StaticResource Device_Version}" Margin="401,126,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
+        <Label Content="{StaticResource DD_VersionDD}" Margin="401,176,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <Button Content="{StaticResource Add}" HorizontalAlignment="Right" Margin="0,0,320,20" VerticalAlignment="Bottom" Width="125" Height="35"  Style="{DynamicResource MetroCircleButtonStyle}"/>
+        <Button Content="{StaticResource Delete}" HorizontalAlignment="Right" Margin="0,0,170,20" VerticalAlignment="Bottom" Width="125" Height="35"   Style="{DynamicResource MetroCircleButtonStyle}"/>
+        <Button Content="{StaticResource Save}" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="125" Height="35"   Style="{DynamicResource MetroCircleButtonStyle}"/>
     </Grid>
 </Page>

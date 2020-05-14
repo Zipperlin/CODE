@@ -4,19 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InstrumentOperation.UI.FF"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="FF">
-
-    <Grid>
-        <TabControl  TabStripPlacement="Left">
-            <TabItem Header="{StaticResource SysBasicInfo}" Height="100" Width="200" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+    <Grid Margin="10">
+        <TabControl  TabStripPlacement="Left"  Focusable="True" Style="{DynamicResource MetroCircleButtonStyle}">
+            <TabItem Header="{StaticResource SysBasicInfo}" Height="60" Width="150" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="5" >
                 <Frame Source="/InstrumentOperation;component/View/FF/SysBasicInfo.xaml"/>
             </TabItem>
-            <TabItem Header="{StaticResource TransferConfig}" Height="100" Width="200" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TabItem Header="{StaticResource TransferConfig}" Height="60" Width="150" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="5">
                 <Frame Source="/InstrumentOperation;component/View/FF/TransferConfig.xaml"/>
             </TabItem>
-            <TabItem Header="{StaticResource FuncConfig}" Height="100" Width="200"  HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TabItem Header="{StaticResource FuncConfig}" Height="60" Width="150"  HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="5" >
                 <Frame Source="/InstrumentOperation;component/View/FF/FuncConfig.xaml"/>
             </TabItem>
         </TabControl>

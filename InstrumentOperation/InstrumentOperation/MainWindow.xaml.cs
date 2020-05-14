@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InstrumentOperation.ViewModel;
+using MahApps.Metro.Controls;
 
 namespace InstrumentOperation
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow :MetroWindow
     {
         private HomeViewModel _viewModel;
 
