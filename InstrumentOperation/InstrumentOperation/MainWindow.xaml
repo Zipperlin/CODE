@@ -13,9 +13,9 @@
         MaxHeight="800" MaxWidth="1600">
 
     <Grid>
-        <Menu Height="40" FontSize="15" VerticalAlignment="Top">
+        <Menu Height="40" FontSize="15" VerticalAlignment="Top" >
             <Menu.Style>
-                <Style  TargetType="Menu">
+                <Style TargetType="Menu">
                     <Setter Property="OverridesDefaultStyle" Value="True" />
                     <Setter Property="Background" Value="AliceBlue" />
                     <Setter Property="Foreground" Value="Black" />
@@ -36,7 +36,6 @@
                         
                     </Setter>
                 </Style>
-
             </Menu.Style>
             <MenuItem Header="文件" Padding="23,10,0,0" Width="80" Height="40" Background="AliceBlue" BorderThickness="0">
                 <MenuItem Header="新建" Command="{Binding Command_CreateNewFile}" >

@@ -19,6 +19,9 @@
             <TabItem Header="{StaticResource FuncConfig}" Height="60" Width="150"  HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="5" >
                 <Frame Source="/InstrumentOperation;component/View/FF/FuncConfig.xaml"/>
             </TabItem>
+            <TabItem Header="{StaticResource Generate}" Height="60" Width="150"  HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="5" >
+                <Frame Source="/InstrumentOperation;component/View/FF/Generate.xaml"/>
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>

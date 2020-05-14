@@ -23,14 +23,16 @@
     <sys:String x:Key="Add">添加</sys:String>
     <sys:String x:Key="Delete">删除</sys:String>
     <sys:String x:Key="Save">保存</sys:String>
+    <sys:String x:Key="NextStep">下一步</sys:String>
+    <sys:String x:Key="Generate">生成</sys:String>
     
     <!--FF转换块-->
     <sys:String x:Key="SerialNum">序号</sys:String>
     <sys:String x:Key="Para_Name">参数名称</sys:String>
     <sys:String x:Key="Type_Name">类型</sys:String>
     <sys:String x:Key="Para_Type">变量类型</sys:String>
-    <sys:String x:Key="Para_List">种类下拉列表(AI/AO/DI/DO/UINT/NULL)</sys:String>
-    <sys:String x:Key="Pro_IO">读写权限(Read_Only/Read_Write)</sys:String>
+    <sys:String x:Key="Para_List">种类</sys:String>
+    <sys:String x:Key="Pro_IO">读写权限</sys:String>
     <sys:String x:Key="ParaDisplay_List">参数显示列表</sys:String>
     <sys:String x:Key="VIEW_1">VIEW_1</sys:String>
     <sys:String x:Key="VIEW_2">VIEW_2</sys:String>

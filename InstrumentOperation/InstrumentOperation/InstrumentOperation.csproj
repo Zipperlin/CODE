@@ -140,6 +140,9 @@
     <Compile Include="View\FF\FF.xaml.cs">
       <DependentUpon>FF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FF\Generate.xaml.cs">
+      <DependentUpon>Generate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FF\SysBasicInfo.xaml.cs">
       <DependentUpon>SysBasicInfo.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FF\FF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FF\Generate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
