@@ -1,22 +1,23 @@
-﻿<Window x:Class="InstrumentOperation.View.PopDialog.Module_Select"
+﻿<mah:MetroWindow x:Class="InstrumentOperation.View.PopDialog.Module_Select"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InstrumentOperation.View.PopDialog"
         xmlns:convert="clr-namespace:InstrumentOperation.Converter"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
         mc:Ignorable="d"
-        Title="Module_Select" Height="300" Width="500">
-    <Window.Resources>
+        Title="{StaticResource SelectInfo}" Height="300" Width="450">
+    <mah:MetroWindow.Resources>
         <convert:ConvertBool2EmoduleType x:Key="convertBool2EmoduleType"/>
-    </Window.Resources>
+    </mah:MetroWindow.Resources>
     <Grid>
-        <Label x:Name="label" Content="{StaticResource SelectInfo}" HorizontalAlignment="Left" Margin="100,59,0,0" VerticalAlignment="Top" Width="232" Height="40"/>
-        <pu:PUCheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,120,0,0" Content="{StaticResource FF}" IsChecked="{Binding Path=Data_ModuleType,Converter={StaticResource convertBool2EmoduleType},ConverterParameter=FF}" />
-        <pu:PUCheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,120,0,0" Content="{StaticResource HART}" IsChecked="{Binding Path=Data_ModuleType,Converter={StaticResource convertBool2EmoduleType},ConverterParameter=HART}"/>
-        <pu:PUCheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,120,0,0" Content="{StaticResource PA}" IsChecked="{Binding Path=Data_ModuleType,Converter={StaticResource convertBool2EmoduleType},ConverterParameter=PA}"/>
-        <pu:PUButton x:Name="button" Content="{StaticResource OK}" Command="{Binding Command_ConfirmModuleType}" HorizontalAlignment="Left" Margin="173,184,0,0" VerticalAlignment="Top" Width="75"/>
-        <pu:PUButton x:Name="button2" Content="{StaticResource Cancel}" Command="{Binding Command_CancelModuleType}" HorizontalAlignment="Left" Margin="273,184,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label" Content="{StaticResource SelectInfo}" Style="{DynamicResource MetroLabelStyle}" HorizontalAlignment="Left" Margin="92,59,0,0" VerticalAlignment="Top" Width="240" Height="40"/>
+        <CheckBox Style="{DynamicResource MetroCheckBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,120,0,0" Content="{StaticResource FF}" IsChecked="{Binding Path=Data_ModuleType,Converter={StaticResource convertBool2EmoduleType},ConverterParameter=FF}" />
+        <CheckBox Style="{DynamicResource MetroCheckBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="194,120,0,0" Content="{StaticResource HART}" IsChecked="{Binding Path=Data_ModuleType,Converter={StaticResource convertBool2EmoduleType},ConverterParameter=HART}"/>
+        <CheckBox Style="{DynamicResource MetroCheckBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,120,0,0" Content="{StaticResource PA}" IsChecked="{Binding Path=Data_ModuleType,Converter={StaticResource convertBool2EmoduleType},ConverterParameter=PA}"/>
+        <Button x:Name="button" Style="{DynamicResource MetroButtonStyle}" Content="{StaticResource OK}" Command="{Binding Command_ConfirmModuleType}" HorizontalAlignment="Left" Margin="100,188,0,0" VerticalAlignment="Top" Width="110" Height="43"/>
+        <Button x:Name="button2" Style="{DynamicResource MetroButtonStyle}" Content="{StaticResource Cancel}" Command="{Binding Command_CancelModuleType}" HorizontalAlignment="Left" Margin="235,188,0,0" VerticalAlignment="Top" Width="101" Height="43"/>
     </Grid>
-</Window>
+</mah:MetroWindow>

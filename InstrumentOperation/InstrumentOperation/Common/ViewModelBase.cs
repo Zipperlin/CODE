@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace InstrumentOperation.Common
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase:INotifyPropertyChanged
     {
         #region UI更新接口
         public event PropertyChangedEventHandler PropertyChanged;
@@ -30,7 +30,7 @@ namespace InstrumentOperation.Common
             set
             {
                 isLoad = value;
-                OnPropertyChanged(nameof(IsLoad));
+                OnPropertyChanged();
             }
         }
         #endregion
@@ -46,7 +46,7 @@ namespace InstrumentOperation.Common
             set
             {
                 update = value;
-                OnPropertyChanged(nameof(Update));
+                OnPropertyChanged();
             }
         }
         #endregion

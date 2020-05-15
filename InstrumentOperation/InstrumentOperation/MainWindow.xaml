@@ -60,9 +60,9 @@
             <MenuItem Header="帮助" Padding="23,10,0,0" Width="80" Height="40" VerticalContentAlignment="Center" Background="AliceBlue">
                 </MenuItem>
         </Menu>
-        
+
         <Grid>
-            <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="20,60,20,20" Source="{Binding Data_PageSource}" BorderThickness="1" BorderBrush="Black"/>
+            <Frame x:Name="mainframe"  Margin="20,60,20,20" Source="{Binding Data_PageSource}" BorderThickness="1" BorderBrush="Black" />
         </Grid>
     </Grid>
 </mah:MetroWindow>

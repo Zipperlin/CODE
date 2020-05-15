@@ -6,18 +6,24 @@ using InstrumentOperation.Common;
 using System.Windows.Input;
 using InstrumentOperation.View.PopDialog;
 using System.Windows.Controls;
+using System.ComponentModel;
 
 namespace InstrumentOperation.ViewModel
 {
-    class HomeViewModel : ViewModelBase
+    class HomeViewModel :Singleton<HomeViewModel>,INotifyPropertyChanged
     {
-        public HomeViewModel()
+
+        #region UI更新接口
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName = null)
         {
-            Mediator.GetInstance().Event_ChangeModule += On_ModuleChanged_Receiver;
+            if (PropertyChanged != null)
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        #endregion
+       
+      
         #region 数据
-
         /// <summary>
         /// 页面源
         /// </summary> 
@@ -28,7 +34,7 @@ namespace InstrumentOperation.ViewModel
             set
             {
                 _data_PageSource = value;
-                OnPropertyChanged(nameof(_data_PageSource));
+                OnPropertyChanged();
             }
         }
 
@@ -49,7 +55,7 @@ namespace InstrumentOperation.ViewModel
             set
             {
                 ModuleSelect = value;
-                OnPropertyChanged(nameof(ModuleSelect));
+                OnPropertyChanged();
             }
         }
 
@@ -82,6 +88,32 @@ namespace InstrumentOperation.ViewModel
 
         #endregion
 
+        #region 定义方法
+        public void ChangeModule(E_Module moduleType)
+        {
+            switch (moduleType)
+            {
+                case E_Module.e_FF_Module:
+                    Data_PageSource = new Uri("pack://application:,,,/View/FF/FF.xaml", UriKind.Absolute);
+                    break;
+                case E_Module.e_HART_Module:
+                    Data_PageSource = new Uri("pack://application:,,,/View/HART/HART.xaml", UriKind.Absolute);
+                    break;
+                case E_Module.e_PA_Module:
+                    Data_PageSource = new Uri("pack://application:,,,/View/PA/PA.xaml", UriKind.Absolute);
+                    break;
+                default:
+                    break;
+            }
+
+            if (ModuleSelect != null)
+            {
+                //To do:此处释放资源存在问题
+                ModuleSelect.Close();
+            }
+        }
+        #endregion
+
         #region 事件处理
         void On_ModuleChanged_Receiver(E_Module message)
         {
@@ -108,8 +140,7 @@ namespace InstrumentOperation.ViewModel
             }
             
         }
-
-            
+        
         #endregion
 
     }

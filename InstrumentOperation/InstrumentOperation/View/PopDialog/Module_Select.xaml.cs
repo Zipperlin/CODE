@@ -12,22 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InstrumentOperation.ViewModel;
+using MahApps.Metro.Controls;
 
 namespace InstrumentOperation.View.PopDialog
 {
     /// <summary>
     /// Module_Select.xaml 的交互逻辑
     /// </summary>
-    public partial class Module_Select : Window
+    public partial class Module_Select : MetroWindow
     {
-        public ModuleViewModel _moduleViewModel;
         public Module_Select()
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-            _moduleViewModel = new ModuleViewModel();
-            DataContext = _moduleViewModel;
+            DataContext = ModuleViewModel.GetInstance();
         }
     }
 }

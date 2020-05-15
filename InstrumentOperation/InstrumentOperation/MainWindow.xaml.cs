@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using InstrumentOperation.ViewModel;
 using MahApps.Metro.Controls;
+using System.Xml;
+using System.Windows.Markup;
+using Prism;
 
 namespace InstrumentOperation
 {
@@ -22,14 +25,10 @@ namespace InstrumentOperation
     /// </summary>
     public partial class MainWindow :MetroWindow
     {
-        private HomeViewModel _viewModel;
-
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new HomeViewModel();
-            frame.Source= new Uri("pack://application:,,,/View/FF/FF.xaml", UriKind.Absolute);
-            DataContext = _viewModel;
-        }      
+            DataContext = HomeViewModel.GetInstance(); ;
+        }
     }
 }

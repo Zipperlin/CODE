@@ -11,11 +11,6 @@ namespace InstrumentOperation.Common
         private static T instance;
         private static object _lock = new object();
 
-        private Singleton()
-        {
-
-        }
-
         public static T GetInstance()
         {
             if (instance == null)
