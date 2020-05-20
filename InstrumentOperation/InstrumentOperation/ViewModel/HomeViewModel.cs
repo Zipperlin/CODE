@@ -71,6 +71,14 @@ namespace InstrumentOperation.ViewModel
         });
 
         /// <summary>
+        /// 生成文件
+        /// </summary> 
+        public ICommand Command_Generate => new DelegateCommand(obj =>
+        {
+            
+        });
+
+        /// <summary>
         /// 保存文件
         /// </summary> 
         public ICommand Command_SaveFile => new DelegateCommand(obj =>

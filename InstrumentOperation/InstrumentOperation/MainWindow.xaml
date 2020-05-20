@@ -9,9 +9,8 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
-        Title="{StaticResource MainWindowTitle}" Height="500" Width="1000" FontSize="30" FontFamily="黑体"
-        MaxHeight="800" MaxWidth="1600">
-
+        Title="{StaticResource MainWindowTitle}" Height="500" Width="1000" FontSize="30" FontFamily="黑体" >
+   
     <Grid>
         <Menu Height="40" FontSize="15" VerticalAlignment="Top" >
             <Menu.Style>
@@ -33,7 +32,6 @@
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
-                        
                     </Setter>
                 </Style>
             </Menu.Style>
@@ -50,7 +48,7 @@
                     </MenuItem>
                 </MenuItem>
             <MenuItem Header="生成" Padding="23,10,0,0" Width="80" Height="40" Background="AliceBlue">
-                    <MenuItem Header="生成">
+                <MenuItem Header="生成" Command="{Binding Command_Generate}">
                     </MenuItem>
                     <MenuItem Header="清理">
                     </MenuItem>
@@ -61,8 +59,44 @@
                 </MenuItem>
         </Menu>
 
-        <Grid>
-            <Frame x:Name="mainframe"  Margin="20,60,20,20" Source="{Binding Data_PageSource}" BorderThickness="1" BorderBrush="Black" />
+        <Grid Margin="0,40,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TreeView Grid.Column="0" AllowDrop="True">
+                <TreeViewItem Header="{StaticResource Instrument}">
+                    <TreeView>
+                        <TreeViewItem>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Resources/Image/pt105.png" Height="100" Width="100"></Image>
+                                <TextBlock Text="pt105"></TextBlock>
+                            </StackPanel>
+                        </TreeViewItem>
+                    </TreeView>
+                </TreeViewItem>
+                <TreeViewItem Header="{StaticResource SetofCards}">
+                    <TreeView>
+                        <TreeViewItem Header="item1" AllowDrop="True">
+
+                        </TreeViewItem>
+                    </TreeView>
+                </TreeViewItem>
+                <TreeViewItem Header="{StaticResource CommunicationCards}">
+                    <TreeView>
+                        <TreeViewItem Header="item1" AllowDrop="True">
+
+                        </TreeViewItem>
+                    </TreeView>
+                </TreeViewItem>
+                <TreeViewItem Header="{StaticResource ScreenCards}">
+                    <TreeView>
+                        <TreeViewItem Header="item1" AllowDrop="True">
+                        </TreeViewItem>
+                    </TreeView>
+                </TreeViewItem>
+            </TreeView>
+            <Frame Grid.Column="1" x:Name="mainframe"  Margin="20,20,20,20" Source="{Binding Data_PageSource}" BorderThickness="1" BorderBrush="Black" />
         </Grid>
     </Grid>
 </mah:MetroWindow>

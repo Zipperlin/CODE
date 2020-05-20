@@ -16,7 +16,7 @@ using InstrumentOperation.ViewModel;
 using MahApps.Metro.Controls;
 using System.Xml;
 using System.Windows.Markup;
-using Prism;
+using InstrumentOperation.Common;
 
 namespace InstrumentOperation
 {
@@ -28,7 +28,12 @@ namespace InstrumentOperation
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = HomeViewModel.GetInstance(); ;
+            DataContext = HomeViewModel.GetInstance();
+
+            //初始化log类
+            Logger.InitLogger();
+
+            Logger.Logger_Info("软件启动");
         }
     }
 }

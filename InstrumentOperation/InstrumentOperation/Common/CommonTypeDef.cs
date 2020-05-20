@@ -12,4 +12,23 @@ namespace InstrumentOperation.Common
         e_HART_Module,
         e_PA_Module,
     }
+
+    public struct S_ManufactureInfo
+    {
+        string ManufactureName;
+        string ManufactureID;
+        string DevType;
+        string DevID;
+        string DevName;
+    }
+
+    public enum E_Pattern
+    {
+        e_Pattern_ManufactureName,
+    }
+
+    public struct S_ConfigInfo
+    {
+        public Dictionary<E_Pattern, string> ConfigPattern;
+    }
 }

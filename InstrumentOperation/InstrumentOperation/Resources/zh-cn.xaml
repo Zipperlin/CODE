@@ -1,6 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--main page-->
+    <sys:String x:Key="Instrument">仪表</sys:String>
+    <sys:String x:Key="SetofCards">套卡</sys:String>
+    <sys:String x:Key="CommunicationCards">通信卡</sys:String>
+    <sys:String x:Key="ScreenCards">显示卡</sys:String>
+    
+
     <!--module info-->
     <sys:String x:Key="FF">FF</sys:String>
     <sys:String x:Key="HART">HART</sys:String>
