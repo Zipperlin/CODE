@@ -22,7 +22,7 @@ namespace InstrumentOperation.Common
         /// <param name="InfoMessage"></param>
         public static void Logger_Info(string InfoMessage)
         {
-            log.Info(DateTime.Now.ToString() + ": " + InfoMessage);
+            log.Info(DateTime.Now.ToString() + ": "+InfoMessage);
         }
 
         /// <summary>
