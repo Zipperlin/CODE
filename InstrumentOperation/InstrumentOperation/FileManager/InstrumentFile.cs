@@ -3,22 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using System.Text.RegularExpressions;
+using System.IO;
+using InstrumentOperation.Common;
+using System.Xml;
 
-namespace InstrumentOperation.Common
+namespace InstrumentOperation.FileManager
 {
-    public class FileManager
+    public abstract class InstrumentFile
     {
+        private string FileName;
+        private string FilePath;
+        private string FileSize;
+        private E_FileType FileType;
+
+        public abstract string replacestring();
+
+
+        public InstrumentFile()
+        {
+
+        }
+
+        public string getFileName(string filePath)
+        {
+            return FileName;
+        }
+
         /// <summary>
         /// 判断文件是否存在
         /// </summary>
         /// <param name="FilePath"></param>
         /// <returns></returns>
-        public  bool IsFileExisted(string FilePath)
+        public bool IsFileExisted(string FilePath)
         {
             bool bret = false;
-            if(System.IO.File.Exists(FilePath))
+            if (System.IO.File.Exists(FilePath))
             {
                 bret = true;
             }
@@ -64,7 +84,7 @@ namespace InstrumentOperation.Common
             //从数据流中读取每一行，直到文件的最后一行     
             string strLine = m_streamReader.ReadLine();
             while (strLine != null)
-            {              
+            {
                 strLine = m_streamReader.ReadLine();
             }
             //关闭此StreamReader对象
@@ -74,11 +94,21 @@ namespace InstrumentOperation.Common
         }
 
         /// <summary>
+        /// 读取每一行到数组
+        /// </summary>
+        /// <param name="FilePath"></param>
+        /// <returns></returns>
+        public string[] ReadFile2Array(string FilePath)
+        {
+            return File.ReadAllLines(FilePath);
+        }
+
+        /// <summary>
         /// 写入文件
         /// </summary>
         /// <param name="FilePath"></param>
         /// <param name="strContent"></param>
-        public void WriteFile(string FilePath,string strContent)
+        public void WriteFile(string FilePath, string strContent)
         {
             FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter m_streamWriter = new StreamWriter(fs);
@@ -87,23 +117,33 @@ namespace InstrumentOperation.Common
             m_streamWriter.BaseStream.Seek(0, SeekOrigin.Begin);
             //写入内容
             m_streamWriter.Write(strContent);
-           
+
             //关闭此文件
             m_streamWriter.Flush();
             m_streamWriter.Close();
         }
 
         /// <summary>
-        /// 替换字符串
+        /// 将字符串数组写入文文件
         /// </summary>
-        /// <param name="oldString"></param>
-        /// <param name="newString"></param>
-        /// <returns></returns>
-        public bool ReplaceString(string oldString,string pattern, string newString)
+        /// <param name="FilePath"></param>
+        /// <param name="strContent"></param>
+        public void WriteFile(string FilePath, string[] strContent)
         {
-            bool bret = false;
-            Regex.Replace(oldString, pattern, newString);
-            return bret;
+            File.WriteAllLines(FilePath, strContent);
+        }
+
+        public XmlNode GetXMLNode(string FilePath,string NodeName)
+        {
+            // 1.创建一个XmlDocument类的对象
+            XmlDocument doc = new XmlDocument();
+
+            // 2.把你想要读取的xml文档加载进来
+            doc.Load(FilePath);
+
+            // 3.返回你指定的节点
+            return doc.SelectSingleNode(NodeName);
+       
         }
     }
 }

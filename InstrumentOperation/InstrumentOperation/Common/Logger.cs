@@ -22,7 +22,7 @@ namespace InstrumentOperation.Common
         /// <param name="InfoMessage"></param>
         public static void Logger_Info(string InfoMessage)
         {
-            log.Info(DateTime.Now.ToString() + ": "+InfoMessage);
+            log.Info(InfoMessage);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace InstrumentOperation.Common
         /// <param name="WarnMessage"></param>
         public static void Logger_Warn(string WarnMessage)
         {
-            log.Warn(DateTime.Now.ToString() + ": " + WarnMessage);
+            log.Warn(WarnMessage);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace InstrumentOperation.Common
         /// <param name="ErrorMessage"></param>
         public static void Logger_Error(string ErrorMessage)
         {
-            log.Error(DateTime.Now.ToString() + ": " + ErrorMessage);
+            log.Error(ErrorMessage);
         }
     }
 }

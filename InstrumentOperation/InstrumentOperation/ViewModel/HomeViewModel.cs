@@ -7,6 +7,8 @@ using System.Windows.Input;
 using InstrumentOperation.View.PopDialog;
 using System.Windows.Controls;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
+using InstrumentOperation.Model;
 
 namespace InstrumentOperation.ViewModel
 {
@@ -54,10 +56,30 @@ namespace InstrumentOperation.ViewModel
             }
             set
             {
-                ModuleSelect = value;
+                _moduleSelect = value;
                 OnPropertyChanged();
             }
         }
+
+        private ObservableCollection<ItemTreeData> _itemTreeDataList;
+        public ObservableCollection<ItemTreeData> ItemTreeDataList
+        {
+            get
+            {
+                if (_itemTreeDataList == null)
+                {
+                    _itemTreeDataList = new ObservableCollection<ItemTreeData>();
+                }
+                return _itemTreeDataList;
+            }
+            set
+            {
+                _itemTreeDataList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ConfigLogicModel configModel;
 
         #endregion
 
@@ -120,6 +142,19 @@ namespace InstrumentOperation.ViewModel
                 ModuleSelect.Close();
             }
         }
+
+        public void InitTreeView()
+        {
+            configModel = new ConfigLogicModel();
+            this.ItemTreeDataList = configModel.GetConfigUIInfo().treeData;
+        }
+
+        public void GetConfig()
+        {
+            ConfigLogicModel configLogicModel = new ConfigLogicModel();
+            configLogicModel.GetConfigInfo();
+        }
+
         #endregion
 
         #region 事件处理

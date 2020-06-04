@@ -11,18 +11,18 @@
     <Grid>
         <Label Content="{StaticResource Manufacturer}" Margin="91,26,-61,0" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
         <Label Content="{StaticResource MANUFAC_ID}" Margin="91,76,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <TextBox Text="{Binding ManuInfo}" HorizontalAlignment="Left" Height="23" Margin="172,26,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+        <TextBox Text="{Binding ManuID}" HorizontalAlignment="Left" Height="23" Margin="172,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
         
         <Label Content="{StaticResource DEV_TYPE}" Margin="401,26,-61,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
         <Label Content="{StaticResource Device_Name}" Margin="401,76,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
         <Label Content="{StaticResource Device_Version}" Margin="401,126,0,0" HorizontalAlignment="Left" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
         <Label Content="{StaticResource DD_VersionDD}" Margin="401,176,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="482,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <Button Content="{StaticResource Save}" HorizontalAlignment="Right" Margin="0,0,170,20" VerticalAlignment="Bottom" Width="125" Height="35"   Style="{DynamicResource MetroCircleButtonStyle}"/>
+        <TextBox Text="{Binding DeviceType}" HorizontalAlignment="Left" Height="23" Margin="482,26,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+        <TextBox Text="{Binding DeviceName}" HorizontalAlignment="Left" Height="23" Margin="482,76,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+        <TextBox Text="{Binding DeviceSerial}" HorizontalAlignment="Left" Height="23" Margin="482,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <TextBox Text="{Binding Version}" HorizontalAlignment="Left" Height="23" Margin="482,176,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="200"/>
+        <Button Content="{StaticResource Save}" Command="{Binding Command_GenerateFFFile}" HorizontalAlignment="Right" Margin="0,0,170,20" VerticalAlignment="Bottom" Width="125" Height="35"   Style="{DynamicResource MetroCircleButtonStyle}"/>
         <Button Content="{StaticResource NextStep}" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="125" Height="35"   Style="{DynamicResource MetroCircleButtonStyle}"/>
     </Grid>
 </Page>

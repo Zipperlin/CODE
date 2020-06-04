@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rootItem  name="仪表">
+	<zeroTreeItem name="系统构件库">
+		<firstTreeItem name="功能模块">
+			<secondTreeItem name="采集"/>
+			<secondTreeItem name="显示"/>
+			<secondTreeItem name="存储"/>
+			<secondTreeItem name="诊断"/>
+			<secondTreeItem name="校准"/>
+			<secondTreeItem name="控制"/>
+		</firstTreeItem>
+	</zeroTreeItem>
+	<zeroTreeItem name ="CPU">
+		<firstTreeItem name="HART"/>
+		<firstTreeItem name="FF"/>
+		<firstTreeItem name="PA"/>
+	</zeroTreeItem>
+	<zeroTreeItem name="外设驱动">
+		<firstTreeItem name="串口"/>
+		<firstTreeItem name="显示"/>
+		<firstTreeItem name="A/D"/>
+		<firstTreeItem name="D/A"/>
+	</zeroTreeItem>
+	<zeroTreeItem name="操作系统">
+		<firstTreeItem name="OS1"/>
+		<firstTreeItem name="OS2"/>
+	</zeroTreeItem>
+</rootItem >

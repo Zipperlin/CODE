@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
         Title="{StaticResource MainWindowTitle}" Height="500" Width="1000" FontSize="30" FontFamily="黑体" >
-   
+
     <Grid>
         <Menu Height="40" FontSize="15" VerticalAlignment="Top" >
             <Menu.Style>
@@ -37,26 +37,26 @@
             </Menu.Style>
             <MenuItem Header="文件" Padding="23,10,0,0" Width="80" Height="40" Background="AliceBlue" BorderThickness="0">
                 <MenuItem Header="新建" Command="{Binding Command_CreateNewFile}" >
-                    </MenuItem>
-                    <MenuItem Header="打开">
-                    </MenuItem>
-                    <MenuItem Header="关闭">
-                    </MenuItem>
-                    <MenuItem Header="保存">
-                    </MenuItem>
-                    <MenuItem Header="退出">
-                    </MenuItem>
                 </MenuItem>
+                <MenuItem Header="打开">
+                </MenuItem>
+                <MenuItem Header="关闭">
+                </MenuItem>
+                <MenuItem Header="保存">
+                </MenuItem>
+                <MenuItem Header="退出">
+                </MenuItem>
+            </MenuItem>
             <MenuItem Header="生成" Padding="23,10,0,0" Width="80" Height="40" Background="AliceBlue">
                 <MenuItem Header="生成" Command="{Binding Command_Generate}">
-                    </MenuItem>
-                    <MenuItem Header="清理">
-                    </MenuItem>
-                    <MenuItem Header="重新生成">
-                    </MenuItem>
                 </MenuItem>
+                <MenuItem Header="清理">
+                </MenuItem>
+                <MenuItem Header="重新生成">
+                </MenuItem>
+            </MenuItem>
             <MenuItem Header="帮助" Padding="23,10,0,0" Width="80" Height="40" VerticalContentAlignment="Center" Background="AliceBlue">
-                </MenuItem>
+            </MenuItem>
         </Menu>
 
         <Grid Margin="0,40,0,0">
@@ -64,39 +64,32 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TreeView Grid.Column="0" AllowDrop="True">
-                <TreeViewItem Header="{StaticResource Instrument}">
-                    <TreeView>
-                        <TreeViewItem>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/Resources/Image/pt105.png" Height="100" Width="100"></Image>
-                                <TextBlock Text="pt105"></TextBlock>
-                            </StackPanel>
-                        </TreeViewItem>
-                    </TreeView>
-                </TreeViewItem>
-                <TreeViewItem Header="{StaticResource SetofCards}">
-                    <TreeView>
-                        <TreeViewItem Header="item1" AllowDrop="True">
-
-                        </TreeViewItem>
-                    </TreeView>
-                </TreeViewItem>
-                <TreeViewItem Header="{StaticResource CommunicationCards}">
-                    <TreeView>
-                        <TreeViewItem Header="item1" AllowDrop="True">
-
-                        </TreeViewItem>
-                    </TreeView>
-                </TreeViewItem>
-                <TreeViewItem Header="{StaticResource ScreenCards}">
-                    <TreeView>
-                        <TreeViewItem Header="item1" AllowDrop="True">
-                        </TreeViewItem>
-                    </TreeView>
-                </TreeViewItem>
+            <TreeView Grid.Column="0" AllowDrop="True" ItemsSource="{Binding ItemTreeDataList }">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                        <Setter Property="FontWeight" Value="Normal" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <TextBlock x:Name="treeViewItemTB" Text="{Binding itemName}" Tag="{Binding itemId}"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
             </TreeView>
             <Frame Grid.Column="1" x:Name="mainframe"  Margin="20,20,20,20" Source="{Binding Data_PageSource}" BorderThickness="1" BorderBrush="Black" />
+            <!--<Grid Margin="20,20,20,20" Grid.Column="1">
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="61,56,100,100" VerticalAlignment="Top"/>
+                --><!--<Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="416,56,0,0" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="157,186,0,0" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="157,301,0,0" VerticalAlignment="Top"/>--><!--
+            </Grid>-->
         </Grid>
     </Grid>
 </mah:MetroWindow>

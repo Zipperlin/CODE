@@ -98,6 +98,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
@@ -124,6 +132,15 @@
     <Reference Include="WPFDemo">
       <HintPath>bin\WPFDemo.exe</HintPath>
     </Reference>
+    <Reference Include="XAct.Core.PCL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAct.Core.PCL.0.0.5014.0\lib\portable-win+net45+sl50+wp80\XAct.Core.PCL.dll</HintPath>
+    </Reference>
+    <Reference Include="XAct.Diagnostics.Uml, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAct.Diagnostics.Uml.1.1.17040.3290\lib\net452\XAct.Diagnostics.Uml.dll</HintPath>
+    </Reference>
+    <Reference Include="XAct.Diagrams.Uml.PlantUml, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAct.Diagrams.Uml.PlantUml.0.0.5014.0\lib\net452\XAct.Diagrams.Uml.PlantUml.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -131,15 +148,24 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CommonTypeDef.cs" />
-    <Compile Include="Common\ConfigManager.cs" />
+    <Compile Include="Common\ItemTreeData.cs" />
+    <Compile Include="Config\ConfigUIFile.cs" />
+    <Compile Include="Config\ConfigManager.cs" />
     <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\Execute.cs" />
-    <Compile Include="Common\FileManager.cs" />
+    <Compile Include="FileManager\CommucationFile\FFFile.cs" />
+    <Compile Include="FileManager\CommucationFile\HartFile.cs" />
+    <Compile Include="FileManager\CommucationFile\PAFile.cs" />
+    <Compile Include="FileManager\FileFactory.cs" />
+    <Compile Include="FileManager\InstrumentFile.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\Singleton.cs" />
     <Compile Include="Common\ViewModelBase.cs" />
     <Compile Include="Converter\ConvertBool2EmoduleType.cs" />
-    <Compile Include="Model\LogicModel.cs" />
+    <Compile Include="Model\ConfigLogicModel.cs" />
+    <Compile Include="Model\FFLogicModel.cs" />
+    <Compile Include="Model\HARTLogicModel.cs" />
+    <Compile Include="Model\PALogicModel.cs" />
     <Compile Include="ViewModel\FFViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\ModuleViewModel.cs" />
@@ -258,7 +284,9 @@
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net451\System.Runtime.WindowsRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net451\System.Runtime.WindowsRuntime.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

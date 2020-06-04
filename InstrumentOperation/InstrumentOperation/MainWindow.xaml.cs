@@ -33,14 +33,26 @@ namespace InstrumentOperation
             InitializeComponent();
             DataContext = HomeViewModel.GetInstance();
 
+            HomeViewModel.GetInstance().InitTreeView();
+            HomeViewModel.GetInstance().GetConfig();
+
             //初始化log类
             Logger.InitLogger();
-            Logger.Logger_Info("软件启动");
 
-           // test code
-           // log4net.Config.XmlConfigurator.Configure();
-           // log4net.ILog log = log4net.LogManager.GetLogger("Instrument.Logging");//获取一个日志记录器
-           // log.Info(DateTime.Now.ToString() + ": login success");//写入一条新log
+            //int i = 0;
+            //while(i<1000)
+            //{
+            //    Logger.Logger_Info("软件启动info");
+            //    Logger.Logger_Error("软件启动error");
+            //    Logger.Logger_Warn("软件启动warn");
+            //    i++;
+            //}
+           
+
+            // test code
+            // log4net.Config.XmlConfigurator.Configure();
+            // log4net.ILog log = log4net.LogManager.GetLogger("Instrument.Logging");//获取一个日志记录器
+            // log.Info(DateTime.Now.ToString() + ": login success");//写入一条新log
         }
     }
 }

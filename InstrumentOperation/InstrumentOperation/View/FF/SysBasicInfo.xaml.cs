@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InstrumentOperation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace InstrumentOperation.UI
         public Page1()
         {
             InitializeComponent();
+            DataContext = FFViewModel.GetInstance();
         }
     }
 }
