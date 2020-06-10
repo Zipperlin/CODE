@@ -45,5 +45,4 @@ namespace InstrumentOperation.Common
         public ObservableCollection<ItemTreeData> treeData;
     }
 
-
 }

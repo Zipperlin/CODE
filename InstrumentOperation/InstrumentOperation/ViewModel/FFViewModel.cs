@@ -104,14 +104,36 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
-        private FFLogicModel ffLogicModel = new FFLogicModel();
+        private string _filePath;
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+            set
+            {
+                _filePath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private FFLogicModel ffLogicModel;
 
         /// <summary>
         /// 确认工程类型
         /// </summary> 
         public ICommand Command_GenerateFFFile => new DelegateCommand(obj =>
         {
-            ffLogicModel.FFGenerateCode();
+            ffLogicModel = new FFLogicModel("D:\\项目文件\\仪表操作系统\\仪表操作系统项目\\DEMO_M0313\\DEMO\\Src\\UserApp.c");
+            S_ManufactureInfo info = new S_ManufactureInfo();
+            info.ManufactureName = ManuInfo;
+            info.ManufactureID = ManuID;
+            info.DevID = DeviceSerial;
+            info.DevName = DeviceName;
+            info.DevType = DeviceType;
+
+            ffLogicModel.FFGenerateBasicCode(info);
         });
         #endregion
     }

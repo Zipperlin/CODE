@@ -17,7 +17,7 @@ namespace InstrumentOperation.FileManager
         private string FileSize;
         private E_FileType FileType;
 
-        public abstract string replacestring();
+        public abstract string replacestring(string oldString, string pattern, string newString);
 
 
         public InstrumentFile()
@@ -38,6 +38,12 @@ namespace InstrumentOperation.FileManager
         public bool IsFileExisted(string FilePath)
         {
             bool bret = false;
+
+            if (FilePath.Equals(""))
+            {
+                return false;
+            }
+
             if (System.IO.File.Exists(FilePath))
             {
                 bret = true;
@@ -57,6 +63,10 @@ namespace InstrumentOperation.FileManager
         public bool IsFolderExisted(string DirectoryPath)
         {
             bool bret = false;
+            if (DirectoryPath.Equals(""))
+            {
+                return false;
+            }
             if (System.IO.Directory.Exists(DirectoryPath))
             {
                 bret = true;

@@ -140,6 +140,7 @@ namespace InstrumentOperation.ViewModel
             {
                 //To do:此处释放资源存在问题
                 ModuleSelect.Close();
+                ModuleSelect = null;
             }
         }
 

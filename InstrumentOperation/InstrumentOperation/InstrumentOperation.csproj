@@ -148,7 +148,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CommonTypeDef.cs" />
-    <Compile Include="Common\ItemTreeData.cs" />
+    <Compile Include="View\Common\ItemTreeData.cs" />
     <Compile Include="Config\ConfigUIFile.cs" />
     <Compile Include="Config\ConfigManager.cs" />
     <Compile Include="Common\DelegateCommand.cs" />
@@ -158,9 +158,9 @@
     <Compile Include="FileManager\CommucationFile\PAFile.cs" />
     <Compile Include="FileManager\FileFactory.cs" />
     <Compile Include="FileManager\InstrumentFile.cs" />
-    <Compile Include="Common\Logger.cs" />
+    <Compile Include="Log\Logger.cs" />
     <Compile Include="Common\Singleton.cs" />
-    <Compile Include="Common\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Converter\ConvertBool2EmoduleType.cs" />
     <Compile Include="Model\ConfigLogicModel.cs" />
     <Compile Include="Model\FFLogicModel.cs" />
@@ -274,9 +274,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net451\System.Runtime.WindowsRuntime.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net451\System.Runtime.WindowsRuntime.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

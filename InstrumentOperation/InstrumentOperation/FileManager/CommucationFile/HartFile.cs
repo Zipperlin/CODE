@@ -9,9 +9,8 @@ namespace InstrumentOperation.FileManager.CommucationFile
 {
     public class HartFile : InstrumentFile
     {
-        public override string replacestring()
-        {
-            string oldString = "", pattern = "", newString = "";
+        public override string replacestring(string oldString, string pattern, string newString)
+        {           
             return Regex.Replace(oldString, pattern, newString);
         }
     }

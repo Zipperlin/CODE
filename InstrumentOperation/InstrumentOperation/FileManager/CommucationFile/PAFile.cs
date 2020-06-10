@@ -9,9 +9,9 @@ namespace InstrumentOperation.FileManager.CommucationFile
 {
     public class PAFile : InstrumentFile
     {
-        public override string replacestring()
+        public override string replacestring(string oldString, string pattern, string newString)
         {
-            string oldString = "", pattern = "", newString = "";
+            
             return Regex.Replace(oldString, pattern, newString);
         }
     }
