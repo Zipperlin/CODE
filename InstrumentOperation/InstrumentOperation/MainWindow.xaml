@@ -10,6 +10,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
         Title="{StaticResource MainWindowTitle}" Height="500" Width="1000" FontSize="30" FontFamily="黑体" >
+   
 
     <Grid>
         <Menu Height="40" FontSize="15" VerticalAlignment="Top" >
@@ -59,37 +60,109 @@
             </MenuItem>
         </Menu>
 
-        <Grid Margin="0,40,0,0">
+        <Grid Margin="0,60,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TreeView Grid.Column="0" AllowDrop="True" ItemsSource="{Binding ItemTreeDataList }">
+
+            <TreeView x:Name="ComponentTreeView" Grid.Column="0" AllowDrop="True"  ItemsSource="{Binding ItemTreeDataList }">
+               
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}">
                         <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                         <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                         <Setter Property="FontWeight" Value="Normal" />
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="FontFamily" Value="黑体"/>
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontWeight" Value="Light" />
                             </Trigger>
                         </Style.Triggers>
+                        
                     </Style>
                 </TreeView.ItemContainerStyle>
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                        <TextBlock x:Name="treeViewItemTB" Text="{Binding itemName}" Tag="{Binding itemId}"/>
+
+                        <Label x:Name="treeViewItemTB" Content="{Binding itemName}" Tag="{Binding itemId}" >
+                            <Label.InputBindings>
+                                <MouseBinding Gesture="RightClick" Command="{Binding Command_RightClickTreeItem}"></MouseBinding>
+                                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=DataContext.Command_DoubleClickTreeItem, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"
+                                              CommandParameter="{Binding ElementName=ComponentTreeView,Path=SelectedItem}"></MouseBinding>
+                            </Label.InputBindings>
+                            <!--<Label.CommandBindings>
+                                <CommandBinding Command="Command_RightClickTreeItem"
+                                Executed="" />
+                            </Label.CommandBindings>-->
+                        </Label> 
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
-            <Frame Grid.Column="1" x:Name="mainframe"  Margin="20,20,20,20" Source="{Binding Data_PageSource}" BorderThickness="1" BorderBrush="Black" />
-            <!--<Grid Margin="20,20,20,20" Grid.Column="1">
+            <!--<Frame Grid.Column="1" x:Name="mainframe"  Margin="20,20,20,20" Source="{Binding Data_PageSource}" BorderThickness="1" BorderBrush="Black" />-->
+            <Border Grid.Column="1" x:Name="mainframe"  Margin="20,20,20,20" BorderBrush="Black" BorderThickness="2">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="ListBox">
+                            <Setter Property="ItemTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" >
+                                                <StackPanel.InputBindings>
+                                                    <!--<MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=DataContext.Command_DoubleClickTreeItem, RelativeSource={RelativeSource AncestorType={x:Type ListBox}} }"/>-->
+                                                </StackPanel.InputBindings>
+                                                <!--<Image Source="{Binding Name,Converter={StaticResource ncvt}}" Width="64" Height="64"/>-->
+                                                <!--<TextBlock Text="{Binding ID}" Margin="10,10,5,10" Width="100"/-->
+                                                <!--<TextBlock Text="{Binding imageName}" Margin="10,10,5,10" Width="100"/>-->
+                                                <TextBlock Text="{Binding imageName}" Margin="10,10,5,10" Width="100"/>
+                                                <!--TextBlock Text="{Binding Sex}" Margin="10,10,5,10" Width="50"/>
+                                                <TextBlock Text="{Binding Score}" Margin="10,10,5,10" Width="50"/>-->
+                                                <Image Source="{Binding imagePath}" Width="64" Height="64"/>
+                                                <Button Content="属性" Margin="25,5,5,5" Width="80" Height="40" Command="{Binding Path=DataContext.Command_DoubleClickTreeItem, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"></Button>
+                                                <Button Content="删除" Margin="5,5,5,5" Width="80" Height="40" Command="{Binding Path=DataContext.Command_RightClickTreeItem, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"></Button>
+                                                <Button Content="锁定" Margin="5,5,5,5" Width="80" Height="40" Command="{Binding Path=DataContext.Command_RightClickTreeItem, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"></Button>
+                                            </StackPanel>
+                                        </Grid>
+                                        <!--<Image Width="100" Height="30"  DataContext="{Binding S_CommucationItemInfo}" Source="{Binding Path=imagePath}">
+                                        </Image>-->
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Grid.Row="0" Grid.Column="0" x:Name="listBox"  BorderThickness="2" HorizontalAlignment="Stretch"  Margin="5" VerticalAlignment="Stretch">
+                    </ListBox>
+                    <ListBox Grid.Row="1" Grid.Column="0" x:Name="listBox_Copy" BorderThickness="2" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" />
+                    <ListBox Grid.Row="2" Grid.Column="0" x:Name="listBox_Copy1" BorderThickness="2" HorizontalAlignment="Stretch"  Margin="5" VerticalAlignment="Stretch" />
+                    <ListBox Grid.Row="0" Grid.Column="1" x:Name="listBox_1"  BorderThickness="2" HorizontalAlignment="Stretch"  Margin="5" VerticalAlignment="Stretch" />
+                    <ListBox Grid.Row="1" Grid.Column="1" x:Name="listBox_Copy_1" ItemsSource="{Binding CommunicationModuleList}" BorderThickness="2" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" />
+                    <ListBox Grid.Row="2" Grid.Column="1" x:Name="listBox_Copy1_1" BorderThickness="2" HorizontalAlignment="Stretch"  Margin="5" VerticalAlignment="Stretch" />
+                    <ListBox Grid.Row="0" Grid.Column="2" x:Name="listBox_2"  BorderThickness="2" HorizontalAlignment="Stretch"  Margin="5" VerticalAlignment="Stretch" />
+                    <ListBox Grid.Row="1" Grid.Column="2" x:Name="listBox_Copy_2" BorderThickness="2" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" />
+                    <ListBox Grid.Row="2" Grid.Column="2" x:Name="listBox_Copy1_2" BorderThickness="2" HorizontalAlignment="Stretch"  Margin="5" VerticalAlignment="Stretch" />
+                </Grid>
+            </Border>
+                <!--<Grid Margin="20,20,20,20" Grid.Column="1">
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="61,56,100,100" VerticalAlignment="Top"/>
-                --><!--<Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="416,56,0,0" VerticalAlignment="Top"/>
+                -->
+            <!--<Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="416,56,0,0" VerticalAlignment="Top"/>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="157,186,0,0" VerticalAlignment="Top"/>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="157,301,0,0" VerticalAlignment="Top"/>--><!--
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="157,301,0,0" VerticalAlignment="Top"/>-->
+            <!--
             </Grid>-->
         </Grid>
     </Grid>
+   
 </mah:MetroWindow>

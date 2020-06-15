@@ -38,7 +38,16 @@ namespace InstrumentOperation.Common
             {
                 return;
             }
+
+            this.parameter = parameter;
             executeAction(parameter);
+        }
+
+        private object parameter;
+
+        public object getParameter()
+        {
+            return parameter;
         }
     }
 }

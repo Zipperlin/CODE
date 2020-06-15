@@ -45,4 +45,17 @@ namespace InstrumentOperation.Common
         public ObservableCollection<ItemTreeData> treeData;
     }
 
+    public class S_CommucationItemInfo
+    {
+        public string imageName { get; set; }
+        public string imagePath { get; set; }
+    }
+
+    public enum E_Component
+    {
+        e_CPU,
+        e_1,
+        e_2,
+    }
+
 }

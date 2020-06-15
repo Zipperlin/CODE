@@ -79,11 +79,59 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
+        private ObservableCollection<S_CommucationItemInfo> _communicationModuleList;
+        public ObservableCollection<S_CommucationItemInfo> CommunicationModuleList
+        {
+            get
+            {
+                if (_communicationModuleList == null)
+                {
+                    _communicationModuleList = new ObservableCollection<S_CommucationItemInfo>();
+                }
+                return _communicationModuleList;
+            }
+            set
+            {
+                _communicationModuleList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _imagePath;
+        public string ImagePath
+        {
+            get
+            {
+                return _imagePath;
+            }
+            set
+            {
+                _imagePath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private E_Component _eComponent;
+        public E_Component EComponent
+        {
+            get
+            {
+                return _eComponent;
+            }
+            set
+            {
+                _eComponent = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private ConfigLogicModel configModel;
 
         #endregion
 
         #region 定义命令 
+        
         /// <summary>
         /// 创建新工程
         /// </summary> 
@@ -114,6 +162,60 @@ namespace InstrumentOperation.ViewModel
         public ICommand Command_CloseFile => new DelegateCommand(obj =>
         {
 
+        });
+
+        
+
+
+        public ICommand Command_DoubleClickTreeItem
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                {
+                    ItemTreeData item = (ItemTreeData)obj;
+                    String sName= item.itemName;
+
+                    switch (sName)
+                    {
+                        case "FF":
+                            {
+                                S_CommucationItemInfo sinfo = new S_CommucationItemInfo();
+                                sinfo.imageName = "FF";
+                                sinfo.imagePath = @"D:\项目文件\仪表操作系统\图片素材\设备图片\板卡\IMG_1413_edit.png";
+                                CommunicationModuleList.Add(sinfo);
+                            }
+                            break;
+                        case "HART":
+                            {
+                                S_CommucationItemInfo sinfo = new S_CommucationItemInfo();
+                                sinfo.imageName = "HART";
+                                sinfo.imagePath = @"D:\项目文件\仪表操作系统\图片素材\设备图片\板卡\hart圆卡.jpg";
+                                CommunicationModuleList.Add(sinfo);
+                            }
+                            break;
+                        case "PA":
+                            {
+                                S_CommucationItemInfo sinfo = new S_CommucationItemInfo();
+                                sinfo.imageName = "PA";
+                                sinfo.imagePath = @"D:\项目文件\仪表操作系统\图片素材\设备图片\板卡\IMG_20150720_085646.jpg";
+                                CommunicationModuleList.Add(sinfo);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+        }
+
+        public ICommand Command_RightClickTreeItem => new DelegateCommand(obj =>
+        {
+            if (CommunicationModuleList.Count > 0)
+            {
+                CommunicationModuleList.RemoveAt(CommunicationModuleList.Count-1);
+            }
+            
         });
 
         #endregion
@@ -152,8 +254,8 @@ namespace InstrumentOperation.ViewModel
 
         public void GetConfig()
         {
-            ConfigLogicModel configLogicModel = new ConfigLogicModel();
-            configLogicModel.GetConfigInfo();
+            configModel = new ConfigLogicModel();
+            configModel.GetConfigInfo();     
         }
 
         #endregion
