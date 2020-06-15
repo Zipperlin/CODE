@@ -39,6 +39,7 @@ namespace InstrumentOperation
             //初始化log类
             Logger.InitLogger();
 
+            
             //int i = 0;
             //while(i<1000)
             //{

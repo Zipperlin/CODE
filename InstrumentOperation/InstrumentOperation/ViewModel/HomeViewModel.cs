@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using InstrumentOperation.Model;
+using InstrumentOperation.View.Common;
 
 namespace InstrumentOperation.ViewModel
 {
@@ -164,7 +165,47 @@ namespace InstrumentOperation.ViewModel
 
         });
 
-        
+        public ICommand Command_FillConfigInfo
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                {
+                    if(CommunicationModuleList.Count>0)
+                    {
+                        S_CommucationItemInfo itemInfo = (S_CommucationItemInfo)obj;
+                        String itemName = itemInfo.imageName;
+
+                        ConfigInfoDialog dialog = new ConfigInfoDialog();
+                       
+                        switch (itemName)
+                        {
+                            case "FF":
+                                {
+                                    //FFViewModel.GetInstance().Command_GenerateFFFile();
+                                    ChangeModule(E_Module.e_FF_Module);
+                                }
+                                break;
+                            case "HART":
+                                {
+                                    ChangeModule(E_Module.e_HART_Module);
+                                }
+                                break;
+                            case "PA":
+                                {
+                                    ChangeModule(E_Module.e_PA_Module);
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
+                        dialog.ShowDialog();
+                    }
+                   
+                });
+            }
+        }
 
 
         public ICommand Command_DoubleClickTreeItem

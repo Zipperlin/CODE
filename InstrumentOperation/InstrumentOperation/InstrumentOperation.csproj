@@ -163,6 +163,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CommonTypeDef.cs" />
+    <Compile Include="View\PopDialog\ConfigInfoDialog.xaml.cs">
+      <DependentUpon>ConfigInfoDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Common\ItemTreeData.cs" />
     <Compile Include="Config\ConfigUIFile.cs" />
     <Compile Include="Config\ConfigManager.cs" />
@@ -225,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\zh-cn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PopDialog\ConfigInfoDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

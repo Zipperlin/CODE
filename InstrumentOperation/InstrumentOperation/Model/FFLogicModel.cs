@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InstrumentOperation.Common;
 using InstrumentOperation.FileManager;
+using System.Text.RegularExpressions;
 
 namespace InstrumentOperation.Model
 {
@@ -41,10 +42,13 @@ namespace InstrumentOperation.Model
         {
             m_file = filefactory.createFile(E_FileType.e_FF_File);
             if(m_file.IsFileExisted(filePath))
-            {
+            {              
+                string NewfilePath = filePath.Insert(filePath.LastIndexOf('.'), "_bak");
+
                 string[] content=m_file.ReadFile2Array(filePath);
                 ReplaceBasicInfo(content, info);
-                m_file.WriteFile(filePath, content);
+
+                m_file.WriteFile(NewfilePath, content);
             }
             
             return false;
@@ -68,18 +72,26 @@ namespace InstrumentOperation.Model
                 {
                     content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.ManufactureName);
                 }            
-                else if(content[i].Contains("// ulManufacId"))
+                else if(content[i].Contains("ulManufacId"))
+                {
+                    content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.ManufactureID);
+                }
+                else if (content[i].Contains("uDevType"))
+                {
+                    content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.DevType);
+                }
+                else if (content[i].Contains("aucDevice_ID[32]"))
+                {
+                    content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.DevID);
+                }
+                else if (content[i].Contains("USIGN8 SM_DEFAULT_PD_TAG[]"))
+                {
+                    content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.DevName);
+                }
+                else
                 {
 
                 }
-                //else if()
-                //{
-
-                //}
-                //else if()
-                //{
-
-                //}
             }
         }
 

@@ -155,5 +155,11 @@ namespace InstrumentOperation.FileManager
             return doc.SelectSingleNode(NodeName);
        
         }
+
+        public FileInfo CreateFile(string FilePath)
+        {
+            FileInfo file = new FileInfo(FilePath);
+            return file;
+        }
     }
 }

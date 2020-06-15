@@ -135,6 +135,8 @@ namespace InstrumentOperation.ViewModel
 
             ffLogicModel.FFGenerateBasicCode(info);
         });
+
+       
         #endregion
     }
 }
