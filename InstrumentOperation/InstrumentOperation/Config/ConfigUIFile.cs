@@ -19,11 +19,7 @@ namespace InstrumentOperation.Config
         private ObservableCollection<ItemTreeData> SecondStepList;
 
         
-        public override string replacestring(string oldString, string pattern, string newString)
-        {
-            return "";
-        }
-
+    
         public S_ConfigUIInfo GetConfigUIInfo()
         {
             m_configUIInfo = new S_ConfigUIInfo();

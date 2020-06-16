@@ -45,10 +45,10 @@ namespace InstrumentOperation.Model
             {              
                 string NewfilePath = filePath.Insert(filePath.LastIndexOf('.'), "_bak");
 
-                string[] content=m_file.ReadFile2Array(filePath);
-                ReplaceBasicInfo(content, info);
+                string[] content=m_file.ReadFile2Array(NewfilePath);
+                ReplaceBasicInfo(content, info,NewfilePath);
 
-                m_file.WriteFile(NewfilePath, content);
+                
             }
             
             return false;
@@ -64,7 +64,7 @@ namespace InstrumentOperation.Model
             return false;
         }
 
-        private void ReplaceBasicInfo(string[] content, S_ManufactureInfo info)
+        private void ReplaceBasicInfo(string[] content, S_ManufactureInfo info, string NewfilePath)
         {
             for (int i = 0; i < content.Length; i++)
             {
@@ -80,19 +80,22 @@ namespace InstrumentOperation.Model
                 {
                     content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.DevType);
                 }
-                else if (content[i].Contains("aucDevice_ID[32]"))
+                else if(content[i].Contains("FIRMWARE_INFO gsFirmwareInfo"))
                 {
-                    content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.DevID);
+                    content[i+5] = m_file.replacestring(content[i + 5], @"(?<="")(\w+?)(?="")", info.DevID);
                 }
                 else if (content[i].Contains("USIGN8 SM_DEFAULT_PD_TAG[]"))
                 {
-                    content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.DevName);
+                    Regex re = new Regex("(?<=\").*?(?=\")", RegexOptions.None);
+                    content[i] = re.Replace(content[i], info.DevName);
                 }
                 else
                 {
 
                 }
             }
+
+            m_file.WriteFile(NewfilePath, content);
         }
 
         private void ReplaceFuncConfig()

@@ -17,7 +17,15 @@ namespace InstrumentOperation.FileManager
         private string FileSize;
         private E_FileType FileType;
 
-        public abstract string replacestring(string oldString, string pattern, string newString);
+        public string replacestring(string oldString, string pattern, string newString)
+        {
+            return Regex.Replace(oldString, pattern, newString);
+        }
+
+        public string replacestring(string oldString, Regex regex, string newString)
+        {
+            return regex.Replace(oldString, newString);
+        }
 
 
         public InstrumentFile()
