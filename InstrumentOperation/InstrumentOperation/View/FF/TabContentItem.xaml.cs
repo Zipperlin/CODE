@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InstrumentOperation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,11 @@ using System.Windows.Shapes;
 namespace InstrumentOperation.View.FF
 {
     /// <summary>
-    /// Generate.xaml 的交互逻辑
+    /// TabContentItem.xaml 的交互逻辑
     /// </summary>
-    public partial class Generate : Page
+    public partial class TabContentItem : UserControl
     {
-        public Generate()
+        public TabContentItem()
         {
             InitializeComponent();
         }

@@ -132,7 +132,7 @@ namespace InstrumentOperation.ViewModel
         #endregion
 
         #region 定义命令 
-        
+
         /// <summary>
         /// 创建新工程
         /// </summary> 
@@ -182,8 +182,9 @@ namespace InstrumentOperation.ViewModel
                         {
                             case "FF":
                                 {
-                                    //FFViewModel.GetInstance().Command_GenerateFFFile();
+                                    //FFViewModel.GetInstance().TransferItemsList.Add();
                                     ChangeModule(E_Module.e_FF_Module);
+
                                 }
                                 break;
                             case "HART":
@@ -291,6 +292,8 @@ namespace InstrumentOperation.ViewModel
         {
             configModel = new ConfigLogicModel();
             this.ItemTreeDataList = configModel.GetConfigUIInfo().treeData;
+
+            
         }
 
         public void GetConfig()

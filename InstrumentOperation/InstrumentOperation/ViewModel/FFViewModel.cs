@@ -7,6 +7,9 @@ using System.ComponentModel;
 using InstrumentOperation.Common;
 using System.Windows.Input;
 using InstrumentOperation.Model;
+using System.Collections.ObjectModel;
+using InstrumentOperation.View.FF;
+using System.Windows.Controls;
 
 namespace InstrumentOperation.ViewModel
 {
@@ -118,6 +121,25 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
+        private ObservableCollection<string> _transferItemsList;
+        public ObservableCollection<string> TransferItemsList
+        {
+            get
+            {
+                if (_transferItemsList == null)
+                {
+                    _transferItemsList = new ObservableCollection<string>();
+                    _transferItemsList.Add("转换块1");
+                }
+                return _transferItemsList;
+            }
+            set
+            {
+                _transferItemsList = value;
+                OnPropertyChanged();
+            }
+        }
+
         private FFLogicModel ffLogicModel;
 
         /// <summary>
@@ -136,7 +158,13 @@ namespace InstrumentOperation.ViewModel
             ffLogicModel.FFGenerateBasicCode(info);
         });
 
-       
+        public ICommand Command_AddTransferModule => new DelegateCommand(obj =>
+        {
+            int icount = TransferItemsList.Count();
+            icount++;
+            string sNum=icount.ToString();
+            TransferItemsList.Add("转换块"+sNum);
+        });
         #endregion
     }
 }

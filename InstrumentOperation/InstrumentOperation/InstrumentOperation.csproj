@@ -163,6 +163,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CommonTypeDef.cs" />
+    <Compile Include="View\FF\TabContentItem.xaml.cs">
+      <DependentUpon>TabContentItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PopDialog\ConfigInfoDialog.xaml.cs">
       <DependentUpon>ConfigInfoDialog.xaml</DependentUpon>
     </Compile>
@@ -189,9 +192,6 @@
     <Compile Include="ViewModel\ModuleViewModel.cs" />
     <Compile Include="View\FF\FF.xaml.cs">
       <DependentUpon>FF.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\FF\Generate.xaml.cs">
-      <DependentUpon>Generate.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FF\SysBasicInfo.xaml.cs">
       <DependentUpon>SysBasicInfo.xaml</DependentUpon>
@@ -231,15 +231,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\FF\TabContentItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PopDialog\ConfigInfoDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FF\FF.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\FF\Generate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

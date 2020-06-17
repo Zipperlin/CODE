@@ -11,10 +11,10 @@
     <Grid Margin="10">
         <TabControl  TabStripPlacement="Left"  Focusable="True" Style="{DynamicResource MetroCircleButtonStyle}">
             <TabItem Header="{StaticResource SysBasicInfo}" Height="60" Width="150" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="5" >
-                <Frame Source="/InstrumentOperation;component/View/FF/SysBasicInfo.xaml"/>
+                <Frame Name="Frame_Basic" Source="/InstrumentOperation;component/View/FF/SysBasicInfo.xaml"/>
             </TabItem>
             <TabItem Header="{StaticResource TransferConfig}" Height="60" Width="150" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="5">
-                <Frame Source="/InstrumentOperation;component/View/FF/TransferConfig.xaml"/>
+                <Frame Name="Frame_Transfer" Source="/InstrumentOperation;component/View/FF/TransferConfig.xaml" LoadCompleted="Frame_LoadCompleted" DataContextChanged="Frame_DataContextChanged"/>
             </TabItem>
             <TabItem Header="{StaticResource FuncConfig}" Height="60" Width="150"  HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="5" >
                 <Frame Source="/InstrumentOperation;component/View/FF/FuncConfig.xaml"/>

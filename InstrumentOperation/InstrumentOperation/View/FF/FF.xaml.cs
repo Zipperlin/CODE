@@ -24,6 +24,33 @@ namespace InstrumentOperation.UI.FF
         public FF()
         {
             InitializeComponent();
+            DataContext = FFViewModel.GetInstance();
+
+        }
+
+        private void Frame_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            UpdateFrameDataContext();
+        }
+
+        private void Frame_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateFrameDataContext();
+        }
+
+        /// <summary>
+        ///  Frame 的 DataContext 不能被 Page 继承,需要做进一步的处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdateFrameDataContext()
+        {
+            var content = this.Frame_Transfer.Content as FrameworkElement;
+            if (content == null)
+            {
+                return;
+            }
+            content.DataContext = this.Frame_Transfer.DataContext;
         }
     }
 }
