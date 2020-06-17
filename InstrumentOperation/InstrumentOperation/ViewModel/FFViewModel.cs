@@ -8,8 +8,9 @@ using InstrumentOperation.Common;
 using System.Windows.Input;
 using InstrumentOperation.Model;
 using System.Collections.ObjectModel;
-using InstrumentOperation.View.FF;
 using System.Windows.Controls;
+using InstrumentOperation.View.Common;
+using System.Windows.Data;
 
 namespace InstrumentOperation.ViewModel
 {
@@ -121,21 +122,56 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
-        private ObservableCollection<string> _transferItemsList;
-        public ObservableCollection<string> TransferItemsList
+        private ObservableCollection<TabItem> _transferItemsList;
+        public ObservableCollection<TabItem> TransferItemsList
         {
             get
             {
                 if (_transferItemsList == null)
                 {
-                    _transferItemsList = new ObservableCollection<string>();
-                    _transferItemsList.Add("转换块1");
+                    _transferItemsList = new ObservableCollection<TabItem>();
+
+                    TabItem t = new TabItem();
+                    TransferItemControl control = new TransferItemControl();
+
+                    control.dataGrid.ItemsSource = TransferInfoList;
+                   
+
+                    t.Content = control;
+                    t.Header = "1";
+                    _transferItemsList.Add(t);
                 }
                 return _transferItemsList;
             }
             set
             {
                 _transferItemsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private ObservableCollection<S_TransferItemInfo> _transferInfoList;
+        public ObservableCollection<S_TransferItemInfo> TransferInfoList
+        {
+            get
+            {
+                if (_transferInfoList == null)
+                {
+                    _transferInfoList = new ObservableCollection<S_TransferItemInfo>();
+
+                    S_TransferItemInfo s = new S_TransferItemInfo();
+                    s.serialNum = "133";
+                    //s.imageName = "1";
+                    _transferInfoList.Add(s);
+
+
+                }
+                return _transferInfoList;
+            }
+            set
+            {
+                _transferInfoList = value;
                 OnPropertyChanged();
             }
         }
@@ -156,14 +192,30 @@ namespace InstrumentOperation.ViewModel
             info.DevType = DeviceType;
 
             ffLogicModel.FFGenerateBasicCode(info);
+
+          
         });
 
         public ICommand Command_AddTransferModule => new DelegateCommand(obj =>
         {
-            int icount = TransferItemsList.Count();
-            icount++;
-            string sNum=icount.ToString();
-            TransferItemsList.Add("转换块"+sNum);
+            //int icount = TransferItemsList.Count();
+            //icount++;
+            //string sNum=icount.ToString();
+            //TransferItemsList.Add("转换块"+sNum);
+
+           // TransferInfoList = new ObservableCollection<S_TransferItemInfo>();
+            S_TransferItemInfo ss = new S_TransferItemInfo();
+
+            //TransferInfoList.Add(ss);
+        });
+
+        public ICommand Command_RemoveTransferModule => new DelegateCommand(obj =>
+        {
+            if (TransferItemsList.Count > 1)
+            {
+                //TransferItemsList.RemoveAt(TransferItemsList.Count-1);
+            }
+            
         });
         #endregion
     }

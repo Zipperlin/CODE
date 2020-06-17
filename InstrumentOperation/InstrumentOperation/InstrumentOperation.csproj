@@ -163,8 +163,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CommonTypeDef.cs" />
-    <Compile Include="View\FF\TabContentItem.xaml.cs">
-      <DependentUpon>TabContentItem.xaml</DependentUpon>
+    <Compile Include="View\Common\TransferItemControl.xaml.cs">
+      <DependentUpon>TransferItemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PopDialog\ConfigInfoDialog.xaml.cs">
       <DependentUpon>ConfigInfoDialog.xaml</DependentUpon>
@@ -231,7 +231,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\FF\TabContentItem.xaml">
+    <Page Include="View\Common\TransferItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

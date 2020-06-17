@@ -1,5 +1,4 @@
-﻿using InstrumentOperation.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InstrumentOperation.View.FF
+namespace InstrumentOperation.View.Common
 {
     /// <summary>
-    /// TabContentItem.xaml 的交互逻辑
+    /// TransferItemControl.xaml 的交互逻辑
     /// </summary>
-    public partial class TabContentItem : UserControl
+    public partial class TransferItemControl : UserControl
     {
-        public TabContentItem()
+        public TransferItemControl()
         {
             InitializeComponent();
         }

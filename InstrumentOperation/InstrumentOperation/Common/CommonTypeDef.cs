@@ -51,6 +51,24 @@ namespace InstrumentOperation.Common
         public string imagePath { get; set; }
     }
 
+    public class S_TransferItemInfo
+    {
+        public string serialNum { get; set; }
+        public string paramName { get; set; }
+        public string paramType { get; set; }
+        public string itemType { get; set; }
+        public string unit { get; set; }
+        public string rwPriority { get; set; }
+        public string VIEW1 { get; set; }
+        public string VIEW2 { get; set; }
+        public string VIEW3 { get; set; }
+        public string VIEW4_1 { get; set; }
+        public string VIEW4_2 { get; set; }
+        public string VIEW4_3 { get; set; }
+        public string VIEW4_4 { get; set; }
+        public string helpInfo { get; set; }
+    }
+
     public enum E_Component
     {
         e_CPU,

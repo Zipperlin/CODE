@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:InstrumentOperation.UI"
       xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-      xmlns:my="clr-namespace:InstrumentOperation.View.FF"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="500"
       Title="Transfer">
@@ -20,33 +19,46 @@
         </DataTemplate>
 
         <DataTemplate x:Key="tabItemTemplate">
-            <Grid>
-                <my:TabContentItem></my:TabContentItem>
+            <Grid Background="#FFE5E5E5" Name="Panel">
+                <DataGrid Grid.Row="0" HorizontalContentAlignment="Center" Style="{DynamicResource MetroDataGridStyle}" >
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center">
+                            </Setter>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{StaticResource SerialNum}" Width="*" />
+                        <DataGridTextColumn Header="{StaticResource Para_Name}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource Para_Type}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource Para_List}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource Unit}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource Pro_IO}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource VIEW_1}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource VIEW_2}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource VIEW_3}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource VIEW_4_1}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource VIEW_4_2}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource VIEW_4_3}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource VIEW_4_4}" Width="*"/>
+                        <DataGridTextColumn Header="{StaticResource Help_Info}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </DataTemplate>
 
     </Page.Resources>
     <Grid>
         <TabControl HorizontalAlignment="Stretch" Margin="20,20,20,100" Style="{DynamicResource MetroCircleButtonStyle}" VerticalAlignment="Stretch" mah:TabControlHelper.Underlined="SelectedTabItem"
-                 ContentTemplate="{StaticResource contentTemplate}"  ItemsSource="{Binding TransferItemsList}">
-            <TabControl.Resources>
+                 ContentTemplate="{StaticResource contentTemplate}" ItemsSource="{Binding TransferItemsList}">
+            <!--<TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="ContentTemplate" Value="{StaticResource tabItemTemplate}"/>
                 </Style>
-            </TabControl.Resources>
-            <!--<TabItem Header="123"></TabItem>-->
-            <!--<TabItem Header="123" ContentTemplate="{StaticResource tabItemTemplate}"></TabItem>-->
-            <!--<TabItem Header="转换块1" Height="25" Width="100">
-                <Grid>
-                    <my:TabContentItem></my:TabContentItem>
-                </Grid>
-            </TabItem>
-            <mah:MetroTabItem Header="转换块2" Height="25" Width="100">
-                <Grid Background="#FFE5E5E5"/>
-            </mah:MetroTabItem>-->
+            </TabControl.Resources>-->
         </TabControl>
         <Button Content="{StaticResource Add}" Command="{Binding Command_AddTransferModule}" HorizontalAlignment="Right" Margin="0,0,470,20" VerticalAlignment="Bottom" Width="125" Height="35" Style="{DynamicResource MetroCircleButtonStyle}"/>
-        <Button Content="{StaticResource Delete}" HorizontalAlignment="Right" Margin="0,0,320,20" VerticalAlignment="Bottom" Width="125" Height="35" Style="{DynamicResource MetroCircleButtonStyle}"/>
+        <Button Content="{StaticResource Delete}" Command="{Binding Command_RemoveTransferModule}" HorizontalAlignment="Right" Margin="0,0,320,20" VerticalAlignment="Bottom" Width="125" Height="35" Style="{DynamicResource MetroCircleButtonStyle}"/>
         <Button Content="{StaticResource Save}" HorizontalAlignment="Right" Margin="0,0,170,20" VerticalAlignment="Bottom" Width="125" Height="35" Style="{DynamicResource MetroCircleButtonStyle}"/>
         <Button Content="{StaticResource NextStep}" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="125" Height="35" Style="{DynamicResource MetroCircleButtonStyle}"/>
     </Grid>
