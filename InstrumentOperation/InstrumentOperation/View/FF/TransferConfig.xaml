@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:InstrumentOperation.UI"
       xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:common="clr-namespace:InstrumentOperation.View.Common"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="500"
       Title="Transfer">
@@ -17,40 +18,43 @@
                 <ContentPresenter Content="{Binding}"/>
             </Grid>
         </DataTemplate>
-
         <DataTemplate x:Key="tabItemTemplate">
-            <Grid Background="#FFE5E5E5" Name="Panel">
-                <DataGrid Grid.Row="0" HorizontalContentAlignment="Center" Style="{DynamicResource MetroDataGridStyle}" >
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="HorizontalContentAlignment" Value="Center">
-                            </Setter>
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="{StaticResource SerialNum}" Width="*" />
-                        <DataGridTextColumn Header="{StaticResource Para_Name}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource Para_Type}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource Para_List}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource Unit}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource Pro_IO}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource VIEW_1}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource VIEW_2}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource VIEW_3}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource VIEW_4_1}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource VIEW_4_2}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource VIEW_4_3}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource VIEW_4_4}" Width="*"/>
-                        <DataGridTextColumn Header="{StaticResource Help_Info}" Width="*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
+            <common:TransferItemControl ></common:TransferItemControl>
         </DataTemplate>
-
     </Page.Resources>
     <Grid>
         <TabControl HorizontalAlignment="Stretch" Margin="20,20,20,100" Style="{DynamicResource MetroCircleButtonStyle}" VerticalAlignment="Stretch" mah:TabControlHelper.Underlined="SelectedTabItem"
-                 ContentTemplate="{StaticResource contentTemplate}" ItemsSource="{Binding TransferItemsList}">
+                  ItemsSource="{Binding TransferList}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text = "{Binding tabHeader}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <Grid Background="#FFE5E5E5" Name="Panel">
+                        <DataGrid Name="dataGrid" Grid.Row="0" HorizontalContentAlignment="Center" Style="{DynamicResource MetroDataGridStyle}" 
+                                  AutoGenerateColumns="false"  ItemsSource="{Binding tabContent,Mode=TwoWay}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{StaticResource SerialNum}" Width="*" Binding="{Binding serialNum}"/>
+                                <DataGridTextColumn Header="{StaticResource Para_Name}" Width="*" Binding="{Binding paramName}"/>
+                                <DataGridTextColumn Header="{StaticResource Para_Type}" Width="*" Binding="{Binding paramType}"/>
+                                <DataGridTextColumn Header="{StaticResource Para_List}" Width="*" Binding="{Binding itemType}"/>
+                                <DataGridTextColumn Header="{StaticResource Unit}" Width="*" Binding="{Binding unit}"/>
+                                <DataGridTextColumn Header="{StaticResource Pro_IO}" Width="*" Binding="{Binding rwPriority}"/>
+                                <DataGridTextColumn Header="{StaticResource VIEW_1}" Width="*" Binding="{Binding VIEW1}"/>
+                                <DataGridTextColumn Header="{StaticResource VIEW_2}" Width="*" Binding="{Binding VIEW2}"/>
+                                <DataGridTextColumn Header="{StaticResource VIEW_3}" Width="*" Binding="{Binding VIEW3}"/>
+                                <DataGridTextColumn Header="{StaticResource VIEW_4_1}" Width="*" Binding="{Binding VIEW4_1}"/>
+                                <DataGridTextColumn Header="{StaticResource VIEW_4_2}" Width="*" Binding="{Binding VIEW4_2}"/>
+                                <DataGridTextColumn Header="{StaticResource VIEW_4_3}" Width="*" Binding="{Binding VIEW4_3}"/>
+                                <DataGridTextColumn Header="{StaticResource VIEW_4_4}" Width="*" Binding="{Binding VIEW4_4}"/>
+                                <DataGridTextColumn Header="{StaticResource Help_Info}" Width="*" Binding="{Binding helpInfo}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
             <!--<TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="ContentTemplate" Value="{StaticResource tabItemTemplate}"/>

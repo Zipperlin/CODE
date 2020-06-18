@@ -6,30 +6,88 @@
              xmlns:local="clr-namespace:InstrumentOperation.View.Common"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="DataGrid">
+            <!--拖动改变单元格大小-->
+            <Setter Property="CanUserResizeColumns" Value="false"/>
+            <!--网格线颜色-->
+            <Setter Property="HorizontalGridLinesBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="LightBlue"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VerticalGridLinesBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="LightBlue"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--标题栏样式-->
+        <Style  TargetType="DataGridColumnHeader" >
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Background" Value="lightBlue" />
+            <!--加粗-->
+            <Setter  Property="FontWeight"  Value="Bold"/>
+        </Style>
+
+        <!--行样式触发-->
+        <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
+        <Style  TargetType="DataGridRow">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="BorderBrush" Value="Red" />
+                    <Setter Property="BorderThickness" Value="1" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--单元格样式触发-->
+        <Style TargetType="DataGridCell">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="#FFE5E5E5" Name="Panel">
-        <DataGrid Name="dataGrid" Grid.Row="0" HorizontalContentAlignment="Center" Style="{DynamicResource MetroDataGridStyle}">
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
+            <DataGrid Name="dataGrid" Grid.Row="0" HorizontalContentAlignment="Center"  ItemsSource="{Binding TransferInfoList,Mode=TwoWay}"
+                      Style="{StaticResource DataGrid}">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
                     <Setter Property="HorizontalContentAlignment" Value="Center">
                     </Setter>
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
+                    <Setter Property="BorderThickness" Value="1"></Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.RowHeaderStyle>
+                <Style TargetType="DataGridRowHeader">
+                    <Setter Property="Style" Value="{StaticResource DataGridRow}"></Setter>
+                </Style>       
+                </DataGrid.RowHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{StaticResource SerialNum}" Width="*" Binding="{Binding serialNum}"/>
-                <DataGridTextColumn Header="{StaticResource Para_Name}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource Para_Type}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource Para_List}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource Unit}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource Pro_IO}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource VIEW_1}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource VIEW_2}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource VIEW_3}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource VIEW_4_1}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource VIEW_4_2}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource VIEW_4_3}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource VIEW_4_4}" Width="*"/>
-                <DataGridTextColumn Header="{StaticResource Help_Info}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+                    <DataGridTextColumn Header="{StaticResource SerialNum}" Width="*" Binding="{Binding serialNum}"/>
+                    <DataGridTextColumn Header="{StaticResource Para_Name}" Width="*" Binding="{Binding paramName}"/>
+                    <DataGridTextColumn Header="{StaticResource Para_Type}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource Para_List}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource Unit}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource Pro_IO}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource VIEW_1}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource VIEW_2}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource VIEW_3}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource VIEW_4_1}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource VIEW_4_2}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource VIEW_4_3}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource VIEW_4_4}" Width="*"/>
+                    <DataGridTextColumn Header="{StaticResource Help_Info}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
 </UserControl>

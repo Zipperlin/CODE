@@ -69,6 +69,12 @@ namespace InstrumentOperation.Common
         public string helpInfo { get; set; }
     }
 
+    public class S_TransferTabList
+    {
+        public string tabHeader { get; set; }
+        public ObservableCollection<S_TransferItemInfo> tabContent { get; set; }
+    }
+
     public enum E_Component
     {
         e_CPU,

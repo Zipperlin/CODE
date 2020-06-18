@@ -122,56 +122,21 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
-        private ObservableCollection<TabItem> _transferItemsList;
-        public ObservableCollection<TabItem> TransferItemsList
+        private ObservableCollection<S_TransferTabList> _transferList;
+        public ObservableCollection<S_TransferTabList> TransferList
         {
             get
             {
-                if (_transferItemsList == null)
+                if (_transferList == null)
                 {
-                    _transferItemsList = new ObservableCollection<TabItem>();
+                    _transferList = new ObservableCollection<S_TransferTabList>();
 
-                    TabItem t = new TabItem();
-                    TransferItemControl control = new TransferItemControl();
-
-                    control.dataGrid.ItemsSource = TransferInfoList;
-                   
-
-                    t.Content = control;
-                    t.Header = "1";
-                    _transferItemsList.Add(t);
                 }
-                return _transferItemsList;
+                return _transferList;
             }
             set
             {
-                _transferItemsList = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private ObservableCollection<S_TransferItemInfo> _transferInfoList;
-        public ObservableCollection<S_TransferItemInfo> TransferInfoList
-        {
-            get
-            {
-                if (_transferInfoList == null)
-                {
-                    _transferInfoList = new ObservableCollection<S_TransferItemInfo>();
-
-                    S_TransferItemInfo s = new S_TransferItemInfo();
-                    s.serialNum = "133";
-                    //s.imageName = "1";
-                    _transferInfoList.Add(s);
-
-
-                }
-                return _transferInfoList;
-            }
-            set
-            {
-                _transferInfoList = value;
+                _transferList = value;
                 OnPropertyChanged();
             }
         }
@@ -198,23 +163,27 @@ namespace InstrumentOperation.ViewModel
 
         public ICommand Command_AddTransferModule => new DelegateCommand(obj =>
         {
-            //int icount = TransferItemsList.Count();
-            //icount++;
-            //string sNum=icount.ToString();
-            //TransferItemsList.Add("转换块"+sNum);
+            int icount = TransferList.Count();
+            icount++;
+            string sNum = icount.ToString();
 
-           // TransferInfoList = new ObservableCollection<S_TransferItemInfo>();
-            S_TransferItemInfo ss = new S_TransferItemInfo();
+            S_TransferTabList slist = new S_TransferTabList();
+            slist.tabHeader = "转换块" + sNum; 
+            slist.tabContent= new ObservableCollection<S_TransferItemInfo>();
 
-            //TransferInfoList.Add(ss);
+            S_TransferItemInfo s = new S_TransferItemInfo();
+            s.serialNum = "转换块" + sNum;
+
+            slist.tabContent.Add(s);
+            TransferList.Add(slist);
         });
 
         public ICommand Command_RemoveTransferModule => new DelegateCommand(obj =>
         {
-            if (TransferItemsList.Count > 1)
-            {
-                //TransferItemsList.RemoveAt(TransferItemsList.Count-1);
-            }
+            //if (TransferItemsList.Count > 1)
+            //{
+            //    //TransferItemsList.RemoveAt(TransferItemsList.Count-1);
+            //}
             
         });
         #endregion
