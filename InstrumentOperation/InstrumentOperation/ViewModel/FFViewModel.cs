@@ -122,6 +122,20 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
+        private int _selectedItemIndex;
+        public int SelectedItemIndex
+        {
+            get
+            {
+                return _selectedItemIndex;
+            }
+            set
+            {
+                _selectedItemIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<S_TransferTabList> _transferList;
         public ObservableCollection<S_TransferTabList> TransferList
         {
@@ -141,7 +155,13 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
+        private struct ItemInfo
+        {
+            string serialNum;
+        }
+
         private FFLogicModel ffLogicModel;
+        private ConfigLogicModel configModel;
 
         /// <summary>
         /// 确认工程类型
@@ -171,20 +191,36 @@ namespace InstrumentOperation.ViewModel
             slist.tabHeader = "转换块" + sNum; 
             slist.tabContent= new ObservableCollection<S_TransferItemInfo>();
 
-            S_TransferItemInfo s = new S_TransferItemInfo();
-            s.serialNum = "转换块" + sNum;
-
-            slist.tabContent.Add(s);
+            configModel = new ConfigLogicModel();
+            
+            foreach(S_TransferItemInfo var in configModel.GetTransferInitInfo())
+            {
+                slist.tabContent.Add(var);
+            }
+            
             TransferList.Add(slist);
         });
 
         public ICommand Command_RemoveTransferModule => new DelegateCommand(obj =>
         {
-            //if (TransferItemsList.Count > 1)
-            //{
-            //    //TransferItemsList.RemoveAt(TransferItemsList.Count-1);
-            //}
-            
+            if (TransferList.Count > 1)
+            {
+                TransferList.RemoveAt(TransferList.Count-1);
+            }
+        });
+
+        public ICommand Command_ReplaceTransferInfo => new DelegateCommand(obj =>
+        {
+            ffLogicModel = new FFLogicModel("D:\\项目文件\\仪表操作系统\\仪表操作系统项目\\DEMO_M0313\\DEMO\\Src\\UserApp.c");
+            S_TransferItemInfo info = new S_TransferItemInfo();
+
+            if (SelectedItemIndex <= TransferList.Count)
+            {
+                foreach (S_TransferItemInfo var in TransferList[SelectedItemIndex].tabContent)
+                {
+                    ffLogicModel.FFGenerateTransferCode(var);
+                }             
+            }
         });
         #endregion
     }

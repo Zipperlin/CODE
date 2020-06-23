@@ -172,5 +172,53 @@ namespace InstrumentOperation.Config
 
             return rootItem;
         }
+
+        public ObservableCollection<S_TransferItemInfo> GetTransferInitInfo()
+        {
+            ObservableCollection<S_TransferItemInfo> InitInfoList = new ObservableCollection<S_TransferItemInfo>();
+
+            XmlNode xmlnode = GetXMLNode("../../../initconfig.xml", "rootItem");
+            XmlElement xeroot = (XmlElement)xmlnode;
+            string rootname = xeroot.GetAttribute("name").ToString();
+
+            switch (rootname)
+            {
+                case "FF_Transfer":
+                    {
+                        foreach (XmlNode zeroNode in xmlnode.ChildNodes)
+                        {
+                            S_TransferItemInfo item = new S_TransferItemInfo();
+                            XmlElement xe = (XmlElement)zeroNode;
+
+                            item.serialNum = xe.GetAttribute("serial").ToString();
+                            item.paramName = xe.GetAttribute("name").ToString();
+                            item.paramType = xe.GetAttribute("paramType").ToString();
+                            item.itemType = xe.GetAttribute("typeList").ToString();
+                            item.unit = xe.GetAttribute("unit").ToString();
+                            item.rwPriority = xe.GetAttribute("RO").ToString();
+                            item.VIEW1 = xe.GetAttribute("VIEW_1").ToString();
+                            item.VIEW2 = xe.GetAttribute("VIEW_2").ToString();
+                            item.VIEW3 = xe.GetAttribute("VIEW_3").ToString();
+                            item.VIEW4_1 = xe.GetAttribute("VIEW_4_1").ToString();
+                            item.VIEW4_2 = xe.GetAttribute("VIEW_4_2").ToString();
+                            item.VIEW4_3 = xe.GetAttribute("VIEW_4_3").ToString();
+                            item.VIEW4_4 = xe.GetAttribute("VIEW_4_4").ToString();
+                            item.helpInfo = xe.GetAttribute("helpInfo").ToString();
+
+                            InitInfoList.Add(item);
+                        }
+                    }
+                    break;
+                case "FF_Function":
+                    {
+                       
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            return InitInfoList;
+        }
     }
 }

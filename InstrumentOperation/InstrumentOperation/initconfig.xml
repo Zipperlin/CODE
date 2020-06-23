@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rootItem  name="FF_Transfer">
+	<zeroItem serial="1" name="ST_REV" paramType="USIGN16" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="2" VIEW_2="2" VIEW_3="2" VIEW_4_1="2" VIEW_4_2="2" VIEW_4_3="2" VIEW_4_4="2" helpInfo=""/>
+	<zeroItem serial="2" name="TAG_DESC" paramType="" typeList="" unit="NULL" RO="Read_Write" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="3" name="STRATEGY" paramType="USIGN16" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="2" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="4" name="ALERT_KEY" paramType="USIGN8" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="1" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="5" name="MODE_BLK" paramType="FLOAT" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="4" VIEW_2="" VIEW_3="4" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="6" name="BLOCK_ERR" paramType="USIGN16" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="2" VIEW_2="" VIEW_3="2" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="7" name="UPDATE_EVT" paramType="" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="8" name="BLOCK_ALM" paramType="" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="9" name="TRANSDUCER_DIRECTORY" paramType="" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="10" name="TRANSDUCER_TYPE" paramType="USIGN16" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="2" VIEW_2="2" VIEW_3="2" VIEW_4_1="2" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="11" name="XD_ERROR" paramType="USIGN8" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="1" VIEW_2="" VIEW_3="1" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="12" name="COLLECTION_DIRECTORY" paramType="" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem/>
+</rootItem >
+<rootItem  name="FF_Function">
+	<zeroItem serial="1" name="ST_REV" paramType="USIGN16" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="2" VIEW_2="2" VIEW_3="2" VIEW_4_1="2" VIEW_4_2="2" VIEW_4_3="2" VIEW_4_4="2" helpInfo=""/>
+	<zeroItem serial="2" name="TAG_DESC" paramType="" typeList="" unit="NULL" RO="Read_Write" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="3" name="STRATEGY" paramType="USIGN16" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="2" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="4" name="ALERT_KEY" paramType="USIGN8" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="1" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="5" name="MODE_BLK" paramType="FLOAT" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="4" VIEW_2="" VIEW_3="4" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="6" name="BLOCK_ERR" paramType="USIGN16" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="2" VIEW_2="" VIEW_3="2" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="7" name="UPDATE_EVT" paramType="" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="8" name="BLOCK_ALM" paramType="" typeList="NULL" unit="NULL" RO="Read_Write" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="9" name="TRANSDUCER_DIRECTORY" paramType="" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="10" name="TRANSDUCER_TYPE" paramType="USIGN16" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="2" VIEW_2="2" VIEW_3="2" VIEW_4_1="2" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="11" name="XD_ERROR" paramType="USIGN8" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="1" VIEW_2="" VIEW_3="1" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem serial="12" name="COLLECTION_DIRECTORY" paramType="" typeList="NULL" unit="NULL" RO="Read_Only" VIEW_1="" VIEW_2="" VIEW_3="" VIEW_4_1="" VIEW_4_2="" VIEW_4_3="" VIEW_4_4="" helpInfo=""/>
+	<zeroItem/>
+</rootItem >

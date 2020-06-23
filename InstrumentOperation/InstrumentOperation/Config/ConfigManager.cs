@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InstrumentOperation.Common;
 using InstrumentOperation.Config;
+using System.Collections.ObjectModel;
 
 namespace InstrumentOperation.FileManager
 {
@@ -33,6 +34,11 @@ namespace InstrumentOperation.FileManager
         public S_ConfigUIInfo GetConfigUIInfo()
         {
             return m_file.GetConfigUIInfo();
+        }
+
+        public ObservableCollection<S_TransferItemInfo> GetTransferInitInfo()
+        {
+            return m_file.GetTransferInitInfo();
         }
     }
 }

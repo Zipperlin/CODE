@@ -21,5 +21,10 @@ namespace InstrumentOperation.Model
         {
             return configManager.GetConfigUIInfo();
         }
+
+        public ObservableCollection<S_TransferItemInfo> GetTransferInitInfo()
+        {
+            return configManager.GetTransferInitInfo();
+        }
     }
 }
