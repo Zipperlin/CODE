@@ -43,6 +43,17 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
+        private Uri _coverViewItemPage;
+        public Uri coverViewItemPage
+        {
+            get { return _coverViewItemPage; }
+            set
+            {
+                _coverViewItemPage = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// 模块页面
         /// </summary> 
@@ -155,6 +166,8 @@ namespace InstrumentOperation.ViewModel
             public string ImgPath { get; set; }
 
             public string BackgroundToken { get; set; }
+
+            public Uri coverViewItemPage { get; set; }
         }
 
 
@@ -162,64 +175,130 @@ namespace InstrumentOperation.ViewModel
         {
             return new ObservableCollection<CoverViewDemoModel>
             {
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\1.jpg",
-                    BackgroundToken = ResourceToken.SuccessBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\2.jpg",
-                    BackgroundToken = ResourceToken.PrimaryBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\3.jpg",
-                    BackgroundToken = ResourceToken.WarningBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\4.jpg",
-                    BackgroundToken = ResourceToken.DangerBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\5.jpg",
-                    BackgroundToken = ResourceToken.SuccessBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\6.jpg",
-                    BackgroundToken = ResourceToken.PrimaryBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\7.jpg",
-                    BackgroundToken = ResourceToken.InfoBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\8.jpg",
-                    BackgroundToken = ResourceToken.WarningBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\9.jpg",
-                    BackgroundToken = ResourceToken.PrimaryBrush
-                },
-                new CoverViewDemoModel
-                {
-                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\10.jpg",
-                    BackgroundToken = ResourceToken.DangerBrush
-                },
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\1.jpg",
+                //    BackgroundToken = ResourceToken.SuccessBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\2.jpg",
+                //    BackgroundToken = ResourceToken.PrimaryBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\3.jpg",
+                //    BackgroundToken = ResourceToken.WarningBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\4.jpg",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\5.jpg",
+                //    BackgroundToken = ResourceToken.SuccessBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\6.jpg",
+                //    BackgroundToken = ResourceToken.PrimaryBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\7.jpg",
+                //    BackgroundToken = ResourceToken.InfoBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\8.jpg",
+                //    BackgroundToken = ResourceToken.WarningBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\9.jpg",
+                //    BackgroundToken = ResourceToken.PrimaryBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\10.jpg",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
 
-                 new CoverViewDemoModel
-                {
-                    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\os.png",
-                    BackgroundToken = ResourceToken.DangerBrush
-                }
+                // new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\os.png",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
 
-                
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\采集图片.png",
+                //    coverViewItemPage=new Uri("pack://application:,,,/View/FF/FF.xaml", UriKind.Absolute),
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\存储.jpg",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\显示.png",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\诊断.jpg",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+
+                // new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\采集图片.png",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\存储.jpg",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\显示.png",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\诊断.jpg",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+
+                // new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\采集图片.png",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\存储.jpg",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\显示.png",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //},
+
+                //new CoverViewDemoModel
+                //{
+                //    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\诊断.jpg",
+                //    BackgroundToken = ResourceToken.DangerBrush
+                //}
+
             };
         }
 
@@ -298,7 +377,6 @@ namespace InstrumentOperation.ViewModel
                         {
                             case "FF":
                                 {
-                                    //FFViewModel.GetInstance().TransferItemsList.Add();
                                     ChangeModule(E_Module.e_FF_Module);
 
                                 }
@@ -342,6 +420,8 @@ namespace InstrumentOperation.ViewModel
                                 sinfo.imageName = "FF";
                                 sinfo.imagePath = @"D:\项目文件\仪表操作系统\图片素材\设备图片\板卡\IMG_1413_edit.png";
                                 CommunicationModuleList.Add(sinfo);
+
+                                
                             }
                             break;
                         case "HART":
@@ -373,6 +453,14 @@ namespace InstrumentOperation.ViewModel
             {
                 CommunicationModuleList.RemoveAt(CommunicationModuleList.Count - 1);
             }
+        });
+
+        public ICommand Command_AddItem2Area => new DelegateCommand(obj =>
+        {
+            CoverViewDemoModel model = new CoverViewDemoModel();
+            model.ImgPath = @"D:\项目文件\仪表操作系统\图片素材\设备图片\板卡\IMG_1413_edit.png";
+            model.coverViewItemPage = new Uri("pack://application:,,,/View/FF/FF.xaml", UriKind.Absolute);
+            ImageDataList.Add(model);
         });
 
         #endregion
@@ -407,8 +495,10 @@ namespace InstrumentOperation.ViewModel
         {
             configModel = new ConfigLogicModel();
             this.ItemTreeDataList = configModel.GetConfigUIInfo().treeData;
+           
+            ImageDataList =GetCoverViewDemoDataList();
 
-            ImageDataList=GetCoverViewDemoDataList();
+            //coverViewItemPage = new Uri("pack://application:,,,/View/FF/FF.xaml", UriKind.Absolute);
         }
 
         public void GetConfig()
@@ -416,7 +506,6 @@ namespace InstrumentOperation.ViewModel
             configModel = new ConfigLogicModel();
             configModel.GetConfigInfo();     
         }
-
         #endregion
 
         #region 事件处理

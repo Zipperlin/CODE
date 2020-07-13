@@ -40,6 +40,21 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
+        private string _ddsolutionPath;
+        public string DDSolutionPath
+        {
+            get
+            {
+                return _ddsolutionPath;
+            }
+            set
+            {
+                _ddsolutionPath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string DDNewSolutionPath;
         private string NewSolutionPath;
 
         private bool _bSetBackup;
@@ -164,6 +179,20 @@ namespace InstrumentOperation.ViewModel
             set
             {
                 _selectedItemIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _aiNum;
+        public int AINum
+        {
+            get
+            {
+                return _aiNum;
+            }
+            set
+            {
+                _aiNum = value;
                 OnPropertyChanged();
             }
         }
@@ -380,6 +409,7 @@ namespace InstrumentOperation.ViewModel
         public void InitFFStatus()
         {
             SolutionPath = @"D:\\项目文件\\仪表操作系统\\仪表操作系统项目\\DEMO_M0313\\DEMO";
+            DDSolutionPath= @"D:\\项目文件\\仪表操作系统\\仪表操作系统项目\\DD_DEMO";
             bSetBackup = true;
             AddTransferModule();
 
@@ -396,7 +426,13 @@ namespace InstrumentOperation.ViewModel
                 string sourcePath = SolutionPath;
                 string targetPath = SolutionPath + "_"+DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
                 NewSolutionPath = targetPath;
+
+                string ddsourcePath = DDSolutionPath;
+                string ddtargetPath= DDSolutionPath+"_"+ DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+                DDNewSolutionPath = ddtargetPath;
+
                 CommonFileOperator.DirectoryCopy(sourcePath, targetPath,true);
+                CommonFileOperator.DirectoryCopy(ddsourcePath, ddtargetPath, true);
             }
 
             //Generate Basic Code
@@ -407,6 +443,9 @@ namespace InstrumentOperation.ViewModel
 
             //Genrate Function code
             GenerateFunctionCode();
+
+            //Generate DD code
+            GenerateDDCode();
         }
 
         private void GenerateBasicCode()
@@ -460,6 +499,35 @@ namespace InstrumentOperation.ViewModel
 
         private void GenerateFunctionCode()
         {
+            ffLogicModel = new FFLogicModel();
+
+            S_UIFuncFileProperties uiFileProperties=new S_UIFuncFileProperties();
+            uiFileProperties.UserAppPath = NewSolutionPath + "\\Src\\UserApp.h";
+
+            uiFileProperties.AINum = AINum;
+            uiFileProperties.AONum = AONum;
+            uiFileProperties.RANum = RANum;
+            uiFileProperties.DINum = DINum;
+            uiFileProperties.DONum = DONum;
+            uiFileProperties.PIDNum = PIDNum;
+            uiFileProperties.SCNum = SCNum;
+            uiFileProperties.ISNum = ISNum;
+            uiFileProperties.LLNum = LLNum;
+            uiFileProperties.BGNum = BGNum;
+
+            for (int i = 0; i < FuncItemList.Count; i++)
+            {
+                ffLogicModel.FFGenerateFuncCode(uiFileProperties, FuncItemList[i]);
+            }
+        }
+
+        private void GenerateDDCode()
+        {
+            ffLogicModel = new FFLogicModel();
+            S_UIDDFileProperties uiFileProperties = new S_UIDDFileProperties();
+            uiFileProperties.FFSeriesDllPath = DDNewSolutionPath + "\\M0313";
+
+            //ffLogicModel.FFGenerateDDCode(uiFileProperties, FuncItemList[i]);
         }
 
         public ICommand Command_AddTransferModule => new DelegateCommand(obj =>

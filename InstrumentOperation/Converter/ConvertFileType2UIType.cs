@@ -95,7 +95,7 @@ namespace InstrumentOperation.Converter
             return sinfo;
         }
 
-        public static S_TransferFilePath UITransferPath2File(S_UITransferFilePath fileInfo)
+        public static S_TransferFilePath UITransferPath2File(S_UITransferFileProperties fileInfo)
         {
             S_TransferFilePath sinfo = new S_TransferFilePath();
             sinfo.XTBhPath = fileInfo.XTBhPath;
@@ -104,24 +104,36 @@ namespace InstrumentOperation.Converter
             return sinfo;
         }
 
-        public static S_FunctionFilePath UIFunctionFilePath2File(S_UIFunctionFilePath filePath)
+        public static S_FunctionFileProperties UIFunctionFilePath2File(S_UIFuncFileProperties filePath)
         {
-            S_FunctionFilePath spath = new S_FunctionFilePath();
+            S_FunctionFileProperties spath = new S_FunctionFileProperties();
             spath.UserAppPath = filePath.UserAppPath;
-            spath.FFSeriesDllPath = filePath.FFSeriesDllPath;
-            spath.FFSeriesPath = filePath.FFSeriesPath;
-            spath.FFSeriesTBDllPath = filePath.FFSeriesTBDllPath;
             return spath;
         }
 
-        public static S_UIFunctionFilePath FunctionFilePath2UI(S_FunctionFilePath filePath)
+        public static S_UIFuncFileProperties FunctionFilePath2UI(S_FunctionFileProperties filePath)
         {
-            S_UIFunctionFilePath spath = new S_UIFunctionFilePath();
+            S_UIFuncFileProperties spath = new S_UIFuncFileProperties();
             spath.UserAppPath = filePath.UserAppPath;
-            spath.FFSeriesDllPath = filePath.FFSeriesDllPath;
-            spath.FFSeriesPath = filePath.FFSeriesPath;
-            spath.FFSeriesTBDllPath = filePath.FFSeriesTBDllPath;
             return spath;
+        }
+
+        public static S_DDFileProperties UIDDFilePath2File(S_UIDDFileProperties fileProperties)
+        {
+            S_DDFileProperties sProperties = new S_DDFileProperties();
+            sProperties.FFSeriesDllPath = fileProperties.FFSeriesDllPath;
+            sProperties.FFSeriesDllPath = fileProperties.FFSeriesDllPath;
+            sProperties.FFSeriesDllPath = fileProperties.FFSeriesDllPath;
+            return sProperties;
+        }
+
+        public static S_UIDDFileProperties DDFilePath2UI(S_DDFileProperties fileProperties)
+        {
+            S_UIDDFileProperties sProperties = new S_UIDDFileProperties();
+            sProperties.FFSeriesDllPath = fileProperties.FFSeriesDllPath;
+            sProperties.FFSeriesDllPath = fileProperties.FFSeriesDllPath;
+            sProperties.FFSeriesDllPath = fileProperties.FFSeriesDllPath;
+            return sProperties;
         }
     }
   

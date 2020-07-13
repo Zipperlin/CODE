@@ -10,7 +10,7 @@
 			<secondTreeItem name="控制"/>
 		</firstTreeItem>
 	</zeroTreeItem>
-	<zeroTreeItem name ="CPU">
+	<zeroTreeItem name ="协议栈">
 		<firstTreeItem name="HART"/>
 		<firstTreeItem name="FF"/>
 		<firstTreeItem name="PA"/>

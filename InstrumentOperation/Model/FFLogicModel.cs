@@ -46,7 +46,7 @@ namespace InstrumentOperation.Model
             return false;
         }
 
-        public bool FFGenerateTransferCode(S_UITransferFilePath path,S_UITransferItemInfo info)
+        public bool FFGenerateTransferCode(S_UITransferFileProperties path,S_UITransferItemInfo info)
         {
             FFFile file = new FFFile();
             S_TransferFilePath sFilePath= ConverterFileTypeUI.UITransferPath2File(path);
@@ -56,14 +56,23 @@ namespace InstrumentOperation.Model
             return false;
         }
 
-        public bool FFGenerateFuncCode(S_UIFunctionFilePath path,S_UIFuncItemInfo info)
+        public bool FFGenerateFuncCode(S_UIFuncFileProperties properties,S_UIFuncItemInfo info)
         {
             FFFile file = new FFFile();
-            S_FunctionFilePath sFilePath = ConverterFileTypeUI.UIFunctionFilePath2File(path);
+            S_FunctionFileProperties sFileProperties = ConverterFileTypeUI.UIFunctionFilePath2File(properties);
             S_FuncItemInfo sinfo = ConverterFileTypeUI.UIFuncItemInfo2File(info); ;
 
-            file.FFGenerateFuncCode(sFilePath, sinfo);
+            file.FFGenerateFuncCode(sFileProperties, sinfo);
             return false;
-        } 
+        }
+
+        public bool FFGenerateDDCode(S_UIDDFileProperties properties)
+        {
+            FFFile file = new FFFile();
+            S_DDFileProperties sFileProperties = ConverterFileTypeUI.UIDDFilePath2File(properties);
+            
+          //  file.FFGenerateFuncCode(sFileProperties);
+            return false;
+        }
     }
 }

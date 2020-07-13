@@ -66,19 +66,37 @@ namespace InstrumentOperation.Common
         public ObservableCollection<ItemTreeData> treeData;
     }
 
-    public struct S_UITransferFilePath
+    public struct S_UITransferFileProperties
     {
         public string XTBhPath;
         public string XTBCPath;
         public string XTBdPath;
     }
 
-    public struct S_UIFunctionFilePath
+    public struct S_UIFuncFileProperties
     {
-        public string UserAppPath;
+        public int AINum;
+        public int AONum;
+        public int DINum;
+        public int DONum;
+        public int PIDNum;
+        public int RANum;
+        public int ISNum;
+        public int SCNum;
+        public int LLNum;
+        public int BGNum;
+        
+        public string UserAppPath;    
+    }
+
+    public struct S_UIDDFileProperties
+    {
         public string FFSeriesDllPath;
         public string FFSeriesPath;
         public string FFSeriesTBDllPath;
+        public S_UIFuncFileProperties funcProperties;
+        public S_UIManufactureInfo basicPropertis;
+        public S_UITransferFileProperties transferProperties;
     }
 
     public class S_CommucationItemInfo
@@ -89,7 +107,7 @@ namespace InstrumentOperation.Common
 
     public class S_TransferTabList
     {
-        public S_UITransferFilePath sFilePath;
+        public S_UITransferFileProperties sFilePath;
         public string tabHeader { get; set; }
         public ObservableCollection<S_UITransferItemInfo> tabContent { get; set; }
     }

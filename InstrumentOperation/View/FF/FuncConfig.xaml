@@ -46,6 +46,7 @@
                         </Style>
                     </StackPanel.Resources>
                     <hc:NumericUpDown  hc:InfoElement.Title="功能块配置"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="AI功能块" Value="{Binding AINum}"/>
                     <hc:NumericUpDown  hc:InfoElement.Title="AO功能块" Value="{Binding AONum}"/>
                     <hc:NumericUpDown  hc:InfoElement.Title="DI功能块"  Value="{Binding DINum}"/>
                     <hc:NumericUpDown  hc:InfoElement.Title="DO功能块"  Value="{Binding DONum}"/>
