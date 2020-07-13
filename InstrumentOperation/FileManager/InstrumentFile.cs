@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.IO;
-using InstrumentOperation.Common;
 using System.Xml;
+using FileManager;
 
 namespace InstrumentOperation.FileManager
 {
@@ -25,6 +25,17 @@ namespace InstrumentOperation.FileManager
         public string replacestring(string oldString, Regex regex, string newString)
         {
             return regex.Replace(oldString, newString);
+        }
+
+        public string replacestring(string oldString, string newString)
+        {         
+            return oldString.Replace(oldString,newString);
+        }
+
+        public string addstring(string oldString, string newString)
+        {
+            oldString += newString;
+            return oldString;
         }
 
 
@@ -169,5 +180,7 @@ namespace InstrumentOperation.FileManager
             FileInfo file = new FileInfo(FilePath);
             return file;
         }
+
+        
     }
 }

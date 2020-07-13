@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HandyControl.Controls;
 
 namespace InstrumentOperation.UI.FF
 {
@@ -25,7 +26,7 @@ namespace InstrumentOperation.UI.FF
         {
             InitializeComponent();
             DataContext = FFViewModel.GetInstance();
-
+            FFViewModel.GetInstance().InitFFStatus();
         }
 
         private void Frame_LoadCompleted(object sender, NavigationEventArgs e)
@@ -45,12 +46,19 @@ namespace InstrumentOperation.UI.FF
         /// <param name="e"></param>
         private void UpdateFrameDataContext()
         {
-            var content = this.Frame_Transfer.Content as FrameworkElement;
-            if (content == null)
-            {
-                return;
-            }
-            content.DataContext = this.Frame_Transfer.DataContext;
+            //var Transfercontent = this.Frame_Transfer.Content as FrameworkElement;
+            //if (Transfercontent == null)
+            //{
+            //    return;
+            //}
+            //Transfercontent.DataContext = this.Frame_Transfer.DataContext;
+
+            //var Basiccontent = this.Frame_Basic.Content as FrameworkElement;
+            //if (Basiccontent == null)
+            //{
+            //    return;
+            //}
+            //Basiccontent.DataContext = this.Frame_Basic.DataContext;
         }
     }
 }

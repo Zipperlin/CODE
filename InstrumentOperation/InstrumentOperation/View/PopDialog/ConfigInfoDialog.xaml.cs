@@ -1,4 +1,5 @@
-﻿using InstrumentOperation.ViewModel;
+﻿using HandyControl.Controls;
+using InstrumentOperation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace InstrumentOperation.View.Common
     /// <summary>
     /// ConfigInfoDialog.xaml 的交互逻辑
     /// </summary>
-    public partial class ConfigInfoDialog : Window
+    public partial class ConfigInfoDialog : BlurWindow
     {
         public ConfigInfoDialog()
         {

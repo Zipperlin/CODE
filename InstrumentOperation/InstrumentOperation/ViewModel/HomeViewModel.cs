@@ -10,6 +10,8 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using InstrumentOperation.Model;
 using InstrumentOperation.View.Common;
+using GalaSoft.MvvmLight.Command;
+using HandyControl.Data;
 
 namespace InstrumentOperation.ViewModel
 {
@@ -98,6 +100,28 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
+      
+
+        private ObservableCollection<CardModel> _communicationList;
+        public ObservableCollection<CardModel> CommunicationList
+        {
+            get
+            {
+                if (_communicationList == null)
+                {
+                    _communicationList = new ObservableCollection<CardModel>();
+                }
+                return _communicationList;
+            }
+            set
+            {
+                _communicationList = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         private string _imagePath;
         public string ImagePath
         {
@@ -122,6 +146,98 @@ namespace InstrumentOperation.ViewModel
             set
             {
                 _eComponent = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public class CoverViewDemoModel
+        {
+            public string ImgPath { get; set; }
+
+            public string BackgroundToken { get; set; }
+        }
+
+
+        internal ObservableCollection<CoverViewDemoModel> GetCoverViewDemoDataList()
+        {
+            return new ObservableCollection<CoverViewDemoModel>
+            {
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\1.jpg",
+                    BackgroundToken = ResourceToken.SuccessBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\2.jpg",
+                    BackgroundToken = ResourceToken.PrimaryBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\3.jpg",
+                    BackgroundToken = ResourceToken.WarningBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\4.jpg",
+                    BackgroundToken = ResourceToken.DangerBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\5.jpg",
+                    BackgroundToken = ResourceToken.SuccessBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\6.jpg",
+                    BackgroundToken = ResourceToken.PrimaryBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\7.jpg",
+                    BackgroundToken = ResourceToken.InfoBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\8.jpg",
+                    BackgroundToken = ResourceToken.WarningBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\9.jpg",
+                    BackgroundToken = ResourceToken.PrimaryBrush
+                },
+                new CoverViewDemoModel
+                {
+                    ImgPath = @"C:\Users\雷霆世纪\Documents\Visual Studio 2017\Projects\WpfApp3\WpfApp3\Resources\Img\Album\10.jpg",
+                    BackgroundToken = ResourceToken.DangerBrush
+                },
+
+                 new CoverViewDemoModel
+                {
+                    ImgPath = @"D:\Project\InstrumentOperation\InstrumentOperation\Resources\os.png",
+                    BackgroundToken = ResourceToken.DangerBrush
+                }
+
+                
+            };
+        }
+
+        private ObservableCollection<CoverViewDemoModel> _imagedatalist;
+        public ObservableCollection<CoverViewDemoModel> ImageDataList
+        {
+            get
+            {
+                if (_imagedatalist == null)
+                {
+                    _imagedatalist = new ObservableCollection<CoverViewDemoModel>();
+
+                }
+                return _imagedatalist;
+            }
+            set
+            {
+                _imagedatalist = value;
                 OnPropertyChanged();
             }
         }
@@ -216,7 +332,7 @@ namespace InstrumentOperation.ViewModel
                 return new DelegateCommand((obj) =>
                 {
                     ItemTreeData item = (ItemTreeData)obj;
-                    String sName= item.itemName;
+                    String sName = item.itemName;
 
                     switch (sName)
                     {
@@ -255,9 +371,8 @@ namespace InstrumentOperation.ViewModel
         {
             if (CommunicationModuleList.Count > 0)
             {
-                CommunicationModuleList.RemoveAt(CommunicationModuleList.Count-1);
+                CommunicationModuleList.RemoveAt(CommunicationModuleList.Count - 1);
             }
-            
         });
 
         #endregion
@@ -280,12 +395,12 @@ namespace InstrumentOperation.ViewModel
                     break;
             }
 
-            if (ModuleSelect != null)
-            {
-                //To do:此处释放资源存在问题
-                ModuleSelect.Close();
-                ModuleSelect = null;
-            }
+            //if (ModuleSelect != null)
+            //{
+            //    //To do:此处释放资源存在问题
+            //    ModuleSelect.Close();
+            //    ModuleSelect = null;
+            //}
         }
 
         public void InitTreeView()
@@ -293,7 +408,7 @@ namespace InstrumentOperation.ViewModel
             configModel = new ConfigLogicModel();
             this.ItemTreeDataList = configModel.GetConfigUIInfo().treeData;
 
-            
+            ImageDataList=GetCoverViewDemoDataList();
         }
 
         public void GetConfig()

@@ -1,4 +1,5 @@
-﻿using InstrumentOperation.Common;
+﻿using FileManager;
+using InstrumentOperation.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,6 +39,6 @@ namespace InstrumentOperation.View.Common
         DependencyProperty.Register("TransferInfoList", typeof(ObservableCollection<S_TransferItemInfo>), typeof(TransferItemControl), new PropertyMetadata(null, (s, e) =>
         {
             ((TransferItemControl)s).TransferInfoList = (ObservableCollection<S_TransferItemInfo>)e.NewValue;
-        }));
+        }));    
     }
 }

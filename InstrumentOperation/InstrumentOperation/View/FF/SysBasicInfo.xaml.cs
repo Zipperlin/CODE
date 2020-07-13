@@ -24,6 +24,7 @@ namespace InstrumentOperation.UI
         public Page1()
         {
             InitializeComponent();
+            this.DataContext = FFViewModel.GetInstance();
         }
     }
 }

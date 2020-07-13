@@ -36,9 +36,19 @@ namespace InstrumentOperation.FileManager
             return m_file.GetConfigUIInfo();
         }
 
-        public ObservableCollection<S_TransferItemInfo> GetTransferInitInfo()
+        public void GetInitInfo()
+        {
+            m_file.GetInitInfo();
+        }
+
+        public ObservableCollection<S_UITransferItemInfo> GetTransferInitInfo()
         {
             return m_file.GetTransferInitInfo();
+        }
+
+        public ObservableCollection<string> GetParamTypeList()
+        {
+            return m_file.GetParamTypeList();
         }
     }
 }

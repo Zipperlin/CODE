@@ -32,6 +32,7 @@
     <sys:String x:Key="Save">保存</sys:String>
     <sys:String x:Key="NextStep">下一步</sys:String>
     <sys:String x:Key="Generate">生成</sys:String>
+    <sys:String x:Key="Open">打开</sys:String>
     
     <!--FF转换块-->
     <sys:String x:Key="SerialNum">序号</sys:String>

@@ -24,6 +24,7 @@ namespace InstrumentOperation.UI
         public StandardFunc()
         {
             InitializeComponent();
+            this.DataContext = FFViewModel.GetInstance();
         }
     }
 }

@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 using InstrumentOperation.Common;
 using InstrumentOperation.FileManager;
 using System.Text.RegularExpressions;
+using FileManager;
+using InstrumentOperation.FileManager.CommucationFile;
+using InstrumentOperation.Converter;
 
 namespace InstrumentOperation.Model
 {
     class FFLogicModel 
-    {
-        private FileFactory filefactory = new FileFactory();
+    {       
         #region data
-        private InstrumentFile m_file;
-
-        private string filePath;
+        
         #endregion
 
-        public FFLogicModel(string path)
+        public FFLogicModel()
         {
-            filePath = path;
         }
 
         /**
@@ -38,111 +37,33 @@ namespace InstrumentOperation.Model
         /**
          * 代码生成函数
          */
-        public bool FFGenerateBasicCode(S_ManufactureInfo info)
+        public bool FFGenerateBasicCode(string path, S_UIManufactureInfo info)
         {
-            m_file = filefactory.createFile(E_FileType.e_FF_File);
-            if(m_file.IsFileExisted(filePath))
-            {              
-                string NewfilePath = filePath.Insert(filePath.LastIndexOf('.'), "_bak");
-
-                string[] content=m_file.ReadFile2Array(NewfilePath);
-                ReplaceBasicInfo(content, info,NewfilePath);
-
-                
-            }
-            
+            FFFile file = new FFFile();
+            S_ManufactureInfo sinfo;
+            sinfo=ConverterFileTypeUI.UIManufactureInfo2File(info);
+            file.FFGenerateBasicCode(path,sinfo);
             return false;
         }
 
-        public bool FFGenerateTransferCode(S_TransferItemInfo info)
+        public bool FFGenerateTransferCode(S_UITransferFilePath path,S_UITransferItemInfo info)
         {
-            m_file = filefactory.createFile(E_FileType.e_FF_File);
-            if (m_file.IsFileExisted(filePath))
-            {
-                string NewfilePath = filePath.Insert(filePath.LastIndexOf('.'), "_bak");
+            FFFile file = new FFFile();
+            S_TransferFilePath sFilePath= ConverterFileTypeUI.UITransferPath2File(path);
+            S_TransferItemInfo sinfo=ConverterFileTypeUI.UITransferItemInfo2File(info); ;
 
-                string[] content = m_file.ReadFile2Array(NewfilePath);
-                ReplaceTransferInfo(content, info, NewfilePath);
-            }
+            file.FFGenerateTransferCode(sFilePath, sinfo);
             return false;
         }
 
-        public bool FFGenerateFuncCode()
+        public bool FFGenerateFuncCode(S_UIFunctionFilePath path,S_UIFuncItemInfo info)
         {
+            FFFile file = new FFFile();
+            S_FunctionFilePath sFilePath = ConverterFileTypeUI.UIFunctionFilePath2File(path);
+            S_FuncItemInfo sinfo = ConverterFileTypeUI.UIFuncItemInfo2File(info); ;
+
+            file.FFGenerateFuncCode(sFilePath, sinfo);
             return false;
-        }
-
-        private void ReplaceBasicInfo(string[] content, S_ManufactureInfo info, string NewfilePath)
-        {
-            for (int i = 0; i < content.Length; i++)
-            {
-                if(content[i].Contains("FB_VFD_VENDOR_NAME"))
-                {
-                    content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.ManufactureName);
-                }            
-                else if(content[i].Contains("ulManufacId"))
-                {
-                    content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.ManufactureID);
-                }
-                else if (content[i].Contains("uDevType"))
-                {
-                    content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.DevType);
-                }
-                else if(content[i].Contains("FIRMWARE_INFO gsFirmwareInfo"))
-                {
-                    content[i+5] = m_file.replacestring(content[i + 5], @"(?<="")(\w+?)(?="")", info.DevID);
-                }
-                else if (content[i].Contains("USIGN8 SM_DEFAULT_PD_TAG[]"))
-                {
-                    Regex re = new Regex("(?<=\").*?(?=\")", RegexOptions.None);
-                    content[i] = re.Replace(content[i], info.DevName);
-                }
-                else
-                {
-
-                }
-            }
-
-            m_file.WriteFile(NewfilePath, content);
-        }
-
-        private void ReplaceTransferInfo(string[] content, S_TransferItemInfo info, string NewfilePath)
-        {
-            //for (int i = 0; i < content.Length; i++)
-            //{
-            //    if (content[i].Contains("FB_VFD_VENDOR_NAME"))
-            //    {
-            //        content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.ManufactureName);
-            //    }
-            //    else if (content[i].Contains("ulManufacId"))
-            //    {
-            //        content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.ManufactureID);
-            //    }
-            //    else if (content[i].Contains("uDevType"))
-            //    {
-            //        content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.DevType);
-            //    }
-            //    else if (content[i].Contains("FIRMWARE_INFO gsFirmwareInfo"))
-            //    {
-            //        content[i + 5] = m_file.replacestring(content[i + 5], @"(?<="")(\w+?)(?="")", info.DevID);
-            //    }
-            //    else if (content[i].Contains("USIGN8 SM_DEFAULT_PD_TAG[]"))
-            //    {
-            //        Regex re = new Regex("(?<=\").*?(?=\")", RegexOptions.None);
-            //        content[i] = re.Replace(content[i], info.DevName);
-            //    }
-            //    else
-            //    {
-
-            //    }
-           // }
-
-            // m_file.WriteFile(NewfilePath, content);
-        }
-
-        //private void ReplaceFuncConfig()
-        //{
-        //    //string[] content
-        //}
+        } 
     }
 }

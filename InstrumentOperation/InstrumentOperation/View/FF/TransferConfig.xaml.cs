@@ -24,6 +24,7 @@ namespace InstrumentOperation.UI
         public Transfer()
         {
             InitializeComponent();
+            this.DataContext = FFViewModel.GetInstance();
             
         }
     }

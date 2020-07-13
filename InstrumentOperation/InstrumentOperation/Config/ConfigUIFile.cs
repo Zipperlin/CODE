@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
 
 namespace InstrumentOperation.Config
 {
@@ -17,9 +18,23 @@ namespace InstrumentOperation.Config
         private ObservableCollection<ItemTreeData> ZeroStepList;
         private ObservableCollection<ItemTreeData> FirstStepList;
         private ObservableCollection<ItemTreeData> SecondStepList;
+        private ObservableCollection<S_UITransferItemInfo> InitInfoList= new ObservableCollection<S_UITransferItemInfo>();
+        private ObservableCollection<string> ParamTypeList = new ObservableCollection<string>();
 
-        
-    
+        public ObservableCollection<S_UITransferItemInfo> GetTransferInitInfo()
+        {
+            return InitInfoList;
+        }
+
+        public ObservableCollection<string> GetParamTypeList()
+        {
+            return ParamTypeList;
+        }
+
+        public ObservableCollection<string> GetTransferTypeList()
+        {
+            return ParamTypeList;
+        }
         public S_ConfigUIInfo GetConfigUIInfo()
         {
             m_configUIInfo = new S_ConfigUIInfo();
@@ -173,52 +188,82 @@ namespace InstrumentOperation.Config
             return rootItem;
         }
 
-        public ObservableCollection<S_TransferItemInfo> GetTransferInitInfo()
+        public void GetInitInfo()
         {
-            ObservableCollection<S_TransferItemInfo> InitInfoList = new ObservableCollection<S_TransferItemInfo>();
-
             XmlNode xmlnode = GetXMLNode("../../../initconfig.xml", "rootItem");
             XmlElement xeroot = (XmlElement)xmlnode;
-            string rootname = xeroot.GetAttribute("name").ToString();
 
-            switch (rootname)
+            foreach(XmlNode zeroNode in xeroot.ChildNodes)
             {
-                case "FF_Transfer":
-                    {
-                        foreach (XmlNode zeroNode in xmlnode.ChildNodes)
+                XmlElement xezero = (XmlElement)zeroNode;
+                string zeroname = xezero.GetAttribute("name").ToString();
+                switch (zeroname)
+                {
+                    case "FF_Transfer":
                         {
-                            S_TransferItemInfo item = new S_TransferItemInfo();
-                            XmlElement xe = (XmlElement)zeroNode;
+                            foreach (XmlNode firstNode in zeroNode.ChildNodes)
+                            {
+                                S_UITransferItemInfo item = new S_UITransferItemInfo();
+                                XmlElement xe = (XmlElement)firstNode;
 
-                            item.serialNum = xe.GetAttribute("serial").ToString();
-                            item.paramName = xe.GetAttribute("name").ToString();
-                            item.paramType = xe.GetAttribute("paramType").ToString();
-                            item.itemType = xe.GetAttribute("typeList").ToString();
-                            item.unit = xe.GetAttribute("unit").ToString();
-                            item.rwPriority = xe.GetAttribute("RO").ToString();
-                            item.VIEW1 = xe.GetAttribute("VIEW_1").ToString();
-                            item.VIEW2 = xe.GetAttribute("VIEW_2").ToString();
-                            item.VIEW3 = xe.GetAttribute("VIEW_3").ToString();
-                            item.VIEW4_1 = xe.GetAttribute("VIEW_4_1").ToString();
-                            item.VIEW4_2 = xe.GetAttribute("VIEW_4_2").ToString();
-                            item.VIEW4_3 = xe.GetAttribute("VIEW_4_3").ToString();
-                            item.VIEW4_4 = xe.GetAttribute("VIEW_4_4").ToString();
-                            item.helpInfo = xe.GetAttribute("helpInfo").ToString();
+                                item.serialNum = xe.GetAttribute("serial").ToString();
+                                item.paramName = xe.GetAttribute("name").ToString();
+                                item.paramType = ConvertString2TransferParamType(xe.GetAttribute("paramType").ToString());
+                                item.itemType = xe.GetAttribute("typeList").ToString();
+                                item.unit = xe.GetAttribute("unit").ToString();
+                                item.rwPriority = xe.GetAttribute("RO").ToString();
+                                item.VIEW1 = xe.GetAttribute("VIEW_1").ToString();
+                                item.VIEW2 = xe.GetAttribute("VIEW_2").ToString();
+                                item.VIEW3 = xe.GetAttribute("VIEW_3").ToString();
+                                item.VIEW4_1 = xe.GetAttribute("VIEW_4_1").ToString();
+                                item.VIEW4_2 = xe.GetAttribute("VIEW_4_2").ToString();
+                                item.VIEW4_3 = xe.GetAttribute("VIEW_4_3").ToString();
+                                item.VIEW4_4 = xe.GetAttribute("VIEW_4_4").ToString();
+                                item.helpInfo = xe.GetAttribute("helpInfo").ToString();
 
-                            InitInfoList.Add(item);
+                                InitInfoList.Add(item);
+                            }
                         }
-                    }
+                        break;
+                    case "FF_Function":
+                        {
+
+                        }
+                        break;
+                    case "FF_TransferParamType":
+                        {
+                            foreach (XmlNode firstNode in zeroNode.ChildNodes)
+                            {
+                                XmlElement xe = (XmlElement)firstNode;
+                                string sParam = xe.GetAttribute("paramType").ToString();
+                                ParamTypeList.Add(sParam);
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private E_UITransferParamType ConvertString2TransferParamType(string sdata)
+        {
+            E_UITransferParamType type = new E_UITransferParamType();
+            switch (sdata)
+            {
+                case "USIGN16":
+                    type = E_UITransferParamType.USIGN16;
                     break;
-                case "FF_Function":
-                    {
-                       
-                    }
+                case "USIGN8":
+                    type = E_UITransferParamType.USIGN8;
+                    break;
+                case "FLOAT":
+                    type = E_UITransferParamType.FLOAT;
                     break;
                 default:
                     break;
             }
-
-            return InitInfoList;
+            return type;
         }
     }
 }

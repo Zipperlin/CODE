@@ -22,9 +22,19 @@ namespace InstrumentOperation.Model
             return configManager.GetConfigUIInfo();
         }
 
-        public ObservableCollection<S_TransferItemInfo> GetTransferInitInfo()
+        public void GetInitInfo()
+        {
+            configManager.GetInitInfo();
+        }
+
+        public ObservableCollection<S_UITransferItemInfo> GetTransferInitInfo()
         {
             return configManager.GetTransferInitInfo();
+        }
+
+        public ObservableCollection<string> GetTransferInitValue()
+        {
+            return configManager.GetParamTypeList();
         }
     }
 }

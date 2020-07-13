@@ -1,4 +1,5 @@
-﻿using InstrumentOperation.Common;
+﻿using FileManager;
+using InstrumentOperation.Common;
 using InstrumentOperation.FileManager;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,6 @@ namespace InstrumentOperation.Model
         bool GenerateCode()
         {
             m_fileFactory.createFile(E_FileType.e_PA_File);
-
-            
             return false;
         }
     }
