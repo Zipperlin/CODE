@@ -1,0 +1,89 @@
+﻿<Page x:Class="InstrumentOperation.View.PA.PAFuncConfig"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InstrumentOperation.View.PA"
+      mc:Ignorable="d" 
+      xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      xmlns:typecommon="clr-namespace:InstrumentOperation.Common"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PAFuncConfig">
+
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="datatemplate1">
+                <Grid Margin="5" Width="100" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="ContentLabel" Grid.Column="0"></Label>
+                    <pu:PUTextBox  Grid.Column="1" Width="50"/>
+                </Grid>
+            </DataTemplate>
+            <Style TargetType="Button" BasedOn="{StaticResource ButtonPrimary}">
+            </Style>
+            <ObjectDataProvider x:Key="FunctionParamType" MethodName="GetNames" ObjectType="{x:Type sys:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="typecommon:E_UIFunctionParamType"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </Grid.Resources>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="5.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="0">
+                <StackPanel  HorizontalAlignment="Left" Margin="5" Orientation="Vertical">
+                    <StackPanel.Resources>
+                        <Style TargetType="hc:NumericUpDown" BasedOn="{StaticResource NumericUpDownPlus}">
+                            <Setter Property="Width" Value="150"></Setter>
+                            <Setter Property="hc:InfoElement.TitleWidth" Value="80"></Setter>
+                            <Setter Property="Margin" Value="20,0,0,0"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                    <hc:NumericUpDown  hc:InfoElement.Title="功能块配置"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="AI功能块" Value="{Binding AINum}"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="AO功能块" Value="{Binding AONum}"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="DI功能块"  Value="{Binding DINum}"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="DO功能块"  Value="{Binding DONum}"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="PID功能块"  Value="{Binding PIDNum}"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="RA功能块" Value="{Binding RANum}" />
+                    <hc:NumericUpDown  hc:InfoElement.Title="IS功能块"  Value="{Binding ISNum}"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="SC功能块"  Value="{Binding SCNum}"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="LL功能块"  Value="{Binding LLNum}"/>
+                    <hc:NumericUpDown  hc:InfoElement.Title="BG功能块"  Value="{Binding BGNum}"/>
+                    <Button  Content="添加" Margin="10" Width="80" Command="{Binding Command_AddFuncModule}"/>
+                </StackPanel>
+            </ScrollViewer>
+            <UniformGrid Background="{DynamicResource PrimaryBrush}" Name="Panel" Grid.Column="1">
+                <DataGrid Grid.Column="1" HorizontalContentAlignment="Center" AutoGenerateColumns="false"
+                                ItemsSource="{Binding FuncItemList,Mode=TwoWay}" CanUserAddRows="True"
+                          HorizontalAlignment="Center" HeadersVisibility="All" >
+                    <DataGrid.RowHeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                        </DataTemplate>
+                    </DataGrid.RowHeaderTemplate>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{StaticResource SerialNum}" Width="*" Binding="{Binding serialNum}"/>
+                        <DataGridTextColumn Header="{StaticResource ChannelNum}" Width="*" Binding="{Binding ChannelNum}"/>
+                        <DataGridComboBoxColumn Header="{StaticResource Cycle_Para}" Width="3*" TextBinding="{Binding cyclePara}" ItemsSource="{Binding Source={StaticResource FunctionParamType}}" SelectedItemBinding="{Binding cyclePara,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        </DataGridComboBoxColumn>
+                        <DataGridTextColumn Header="{StaticResource RangeConfig_Top}" Width="2*" Binding="{Binding paramType}"/>
+                        <DataGridTextColumn Header="{StaticResource RangeConfig_End}" Width="2*" Binding="{Binding itemType}"/>
+                        <DataGridTextColumn Header="{StaticResource Unit}" Width="*" Binding="{Binding unit}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </UniformGrid>
+        </Grid>
+        <!--<Button Content="{StaticResource Add}" Command="{Binding }" HorizontalAlignment="Right" Margin="0,0,470,20" VerticalAlignment="Bottom" Width="125" Height="35" />
+        <Button Content="{StaticResource Delete}" HorizontalAlignment="Right" Margin="0,0,320,20" VerticalAlignment="Bottom" Width="125" Height="35" />
+        <Button Content="{StaticResource Save}" HorizontalAlignment="Right" Margin="0,0,170,20" VerticalAlignment="Bottom" Width="125" Height="35" />
+        <Button Content="{StaticResource Generate}" Command="{Binding Command_ReplaceFFInfo}" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="125" Height="35"/>-->
+    </Grid>
+</Page>

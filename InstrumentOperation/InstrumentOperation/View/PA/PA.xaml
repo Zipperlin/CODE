@@ -1,0 +1,45 @@
+﻿<Page x:Class="InstrumentOperation.UI.PA.PA"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InstrumentOperation.UI.PA"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="PA">
+
+    <Grid Margin="10">
+        <!--<Grid Grid.Column="0" VerticalAlignment="Top">
+      
+        </Grid>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="16*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel HorizontalAlignment="Left">
+            <TextBlock Text="工程路径" Margin="30,10,10,10"></TextBlock>
+            <TextBox Width="450" Height="10" Text="{Binding SolutionPath}" Margin="20,5,20,5"/>
+            <TextBlock Text="DD工程路径" Margin="10,10,10,10"></TextBlock>
+            <TextBox Width="450" Height="10" Text="{Binding DDSolutionPath}" Margin="20,5,20,5"/>
+            <TextBlock Text="开启备份" Margin="10,10,10,10" Width="80"></TextBlock>
+            <ToggleButton Margin="10,10,10,10" BorderThickness="0" IsChecked="{Binding bSetBackup}" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonSwitch}">
+            </ToggleButton>
+            <Button Content="{StaticResource Open}" Command="{Binding Command_ReplaceFFInfo}"  Margin="10,5,10,5"  Width="90" Height="30"/>
+            <Button Content="{StaticResource Generate}" Command="{Binding Command_ReplaceFFInfo}"  Margin="5,5,10,5"  Width="90" Height="30"/>
+        </WrapPanel>
+        <Border Grid.Row="1">
+            <hc:TabControl   TabStripPlacement="Left"  Focusable="True" Style="{StaticResource TabControlInLine}" Margin="16"  ShowCloseButton="True">
+                <hc:TabItem Header="{StaticResource SysBasicInfo}" Height="60"  HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                    <Frame Name="Frame_Basic" Source="/InstrumentOperation;component/View/PA/PASysBasicInfo.xaml"/>
+                </hc:TabItem>
+                <hc:TabItem Header="{StaticResource TransferConfig}" Height="60" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <Frame Name="Frame_Transfer" Source="/InstrumentOperation;component/View/PA/PATransferConfig.xaml" LoadCompleted="Frame_LoadCompleted" DataContextChanged="Frame_DataContextChanged"/>
+                </hc:TabItem>
+                <hc:TabItem Header="{StaticResource FuncConfig}" Height="60"  HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <Frame Source="/InstrumentOperation;component/View/PA/PAFuncConfig.xaml"/>
+                </hc:TabItem>
+            </hc:TabControl>
+        </Border>
+    </Grid>
+</Page>
