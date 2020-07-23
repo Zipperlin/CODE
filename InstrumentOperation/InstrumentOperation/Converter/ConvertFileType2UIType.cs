@@ -26,10 +26,10 @@ namespace InstrumentOperation.Converter
         {
             S_UITransferItemInfo sinfo = new S_UITransferItemInfo();
             sinfo.helpInfo = fileInfo.helpInfo;
-            sinfo.itemType = fileInfo.itemType;
+            sinfo.itemType = (E_UITransferItemType)fileInfo.itemType;
             sinfo.paramName = fileInfo.paramName;
             sinfo.paramType = (E_UITransferParamType)fileInfo.paramType;
-            sinfo.rwPriority = fileInfo.rwPriority;
+            sinfo.rwPriority = (E_UITransferPriorityType)fileInfo.rwPriority;
             sinfo.serialNum = fileInfo.serialNum;
             sinfo.unit = fileInfo.unit;
             sinfo.VIEW1 = fileInfo.VIEW1;
@@ -68,10 +68,10 @@ namespace InstrumentOperation.Converter
         {
             S_TransferItemInfo sinfo = new S_TransferItemInfo();
             sinfo.helpInfo = uiInfo.helpInfo;
-            sinfo.itemType = uiInfo.itemType;
+            sinfo.itemType = (E_TransferItemType)uiInfo.itemType;
             sinfo.paramName = uiInfo.paramName;
             sinfo.paramType = (E_TransferParamType)uiInfo.paramType;
-            sinfo.rwPriority = uiInfo.rwPriority;
+            sinfo.rwPriority = (E_TransferPriorityType)uiInfo.rwPriority;
             sinfo.serialNum = uiInfo.serialNum;
             sinfo.unit = uiInfo.unit;
             sinfo.VIEW1 = uiInfo.VIEW1;
@@ -95,9 +95,10 @@ namespace InstrumentOperation.Converter
             return sinfo;
         }
 
-        public static S_TransferFilePath UITransferPath2File(S_UITransferFileProperties fileInfo)
+        public static S_TransferFileProperties UITransferPath2File(S_UITransferFileProperties fileInfo)
         {
-            S_TransferFilePath sinfo = new S_TransferFilePath();
+            S_TransferFileProperties sinfo = new S_TransferFileProperties();
+            sinfo.TransferName = fileInfo.TransferName;
             sinfo.XTBhPath = fileInfo.XTBhPath;
             sinfo.XTBCPath = fileInfo.XTBCPath;
             sinfo.XTBdPath = fileInfo.XTBdPath;
@@ -111,7 +112,7 @@ namespace InstrumentOperation.Converter
             return spath;
         }
 
-        public static S_UITransferFileProperties TransferPath2UI(S_TransferFilePath fileInfo)
+        public static S_UITransferFileProperties TransferPath2UI(S_TransferFileProperties fileInfo)
         {
             S_UITransferFileProperties sinfo = new S_UITransferFileProperties();
             sinfo.XTBhPath = fileInfo.XTBhPath;
@@ -135,7 +136,7 @@ namespace InstrumentOperation.Converter
             sProperties.FFSeriesTBDllPath = fileProperties.FFSeriesTBDllPath;
 
             sProperties.ManufactureInfo = UIManufactureInfo2File(fileProperties.basicPropertis);
-            sProperties.TransferFilePath = UITransferPath2File(fileProperties.transferProperties);
+            sProperties.TransferFileProperties = UITransferPath2File(fileProperties.transferProperties);
             sProperties.FunctionFileProperties = UIFunctionFilePath2File(fileProperties.funcProperties);
             return sProperties;
         }
@@ -148,7 +149,7 @@ namespace InstrumentOperation.Converter
             sProperties.FFSeriesTBDllPath = fileProperties.FFSeriesTBDllPath;
 
             sProperties.basicPropertis = ManufactureInfo2UI(fileProperties.ManufactureInfo);
-            sProperties.transferProperties = TransferPath2UI(fileProperties.TransferFilePath);
+            sProperties.transferProperties = TransferPath2UI(fileProperties.TransferFileProperties);
             sProperties.funcProperties = FunctionFilePath2UI(fileProperties.FunctionFileProperties);
             return sProperties;
         }

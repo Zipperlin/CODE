@@ -37,8 +37,9 @@ namespace InstrumentOperation.Config
         }
         public S_ConfigUIInfo GetConfigUIInfo()
         {
+            string path = "D:/Project/InstrumentOperation/InstrumentOperation/Resources/config/settingconfig.xml";
             m_configUIInfo = new S_ConfigUIInfo();
-            m_configUIInfo.treeData = GetConfigTreeData("../../../settingconfig.xml");
+            m_configUIInfo.treeData = GetConfigTreeData(path);
             return m_configUIInfo;
         }
 
@@ -190,7 +191,7 @@ namespace InstrumentOperation.Config
 
         public void GetInitInfo()
         {
-            XmlNode xmlnode = GetXMLNode("../../../initconfig.xml", "rootItem");
+            XmlNode xmlnode = GetXMLNode("D:/Project/InstrumentOperation/InstrumentOperation/Resources/config/initconfig.xml", "rootItem");
             XmlElement xeroot = (XmlElement)xmlnode;
 
             foreach(XmlNode zeroNode in xeroot.ChildNodes)
@@ -209,9 +210,9 @@ namespace InstrumentOperation.Config
                                 item.serialNum = xe.GetAttribute("serial").ToString();
                                 item.paramName = xe.GetAttribute("name").ToString();
                                 item.paramType = ConvertString2TransferParamType(xe.GetAttribute("paramType").ToString());
-                                item.itemType = xe.GetAttribute("typeList").ToString();
+                                item.itemType = ConvertString2TransferItemType(xe.GetAttribute("typeList").ToString());
                                 item.unit = xe.GetAttribute("unit").ToString();
-                                item.rwPriority = xe.GetAttribute("RO").ToString();
+                                item.rwPriority = ConvertString2TransferPriorityType(xe.GetAttribute("RO").ToString());
                                 item.VIEW1 = xe.GetAttribute("VIEW_1").ToString();
                                 item.VIEW2 = xe.GetAttribute("VIEW_2").ToString();
                                 item.VIEW3 = xe.GetAttribute("VIEW_3").ToString();
@@ -259,6 +260,79 @@ namespace InstrumentOperation.Config
                     break;
                 case "FLOAT":
                     type = E_UITransferParamType.FLOAT;
+                    break;
+                case "FF_Discrete":
+                    type = E_UITransferParamType.FF_Discrete;
+                    break;
+                case "FF_FloatingPoint":
+                    type = E_UITransferParamType.FF_FloatingPoint;
+                    break;
+                case "FF_Scaling":
+                    type = E_UITransferParamType.FF_Scaling;
+                    break;
+                case "FF_Date":
+                    type = E_UITransferParamType.FF_Date;
+                    break;
+                case "USIGN32":
+                    type = E_UITransferParamType.USIGN32;
+                    break;
+                case "VisString":
+                    type = E_UITransferParamType.VisString;
+                    break;
+                case "BitString":
+                    type = E_UITransferParamType.BitString;
+                    break;
+                case "OctString":
+                    type = E_UITransferParamType.OctString;
+                    break;
+                default:
+                    break;
+            }
+            return type;
+        }
+
+        private E_UITransferItemType ConvertString2TransferItemType(string sdata)
+        {
+            E_UITransferItemType type = new E_UITransferItemType();
+            switch (sdata)
+            {
+                case "AI":
+                    type = E_UITransferItemType.AI;
+                    break;
+                case "AO":
+                    type = E_UITransferItemType.AO;
+                    break;
+                case "DI":
+                    type = E_UITransferItemType.DI;
+                    break;
+                case "DO":
+                    type = E_UITransferItemType.DO;
+                    break;
+                case "UNIT":
+                    type = E_UITransferItemType.UNIT;
+                    break;
+                case "NULL":
+                    type = E_UITransferItemType.NULL;
+                    break;
+                default:
+                    break;
+            }
+            return type;
+        }
+
+        private E_UITransferPriorityType ConvertString2TransferPriorityType(string sdata)
+        {
+            E_UITransferPriorityType type = new E_UITransferPriorityType();
+            switch (sdata)
+            {
+                case "Read_Only":
+                    type = E_UITransferPriorityType.Read_Only;
+                    break;
+                case "Write_Only":
+                    type = E_UITransferPriorityType.Write_Only;
+                    break;
+                case "Read_Write":
+                    type = E_UITransferPriorityType.Read_Write;
                     break;
                 default:
                     break;

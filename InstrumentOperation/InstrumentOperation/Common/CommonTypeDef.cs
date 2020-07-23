@@ -20,10 +20,36 @@ namespace InstrumentOperation.Common
 
     public enum E_UITransferParamType
     {
+        FF_Discrete,        ////循环
+        FF_FloatingPoint,   ////循环
+        FF_Scaling,
+        FF_Date,
         USIGN16,
         USIGN8,
+        USIGN32,
         FLOAT,
+        VisString,
+        BitString,
+        OctString,
     }
+
+    public enum E_UITransferItemType
+    {
+        AI,
+        AO,
+        DI,
+        DO,
+        UNIT,
+        NULL,
+    }
+
+    public enum E_UITransferPriorityType
+    {
+        Read_Only,
+        Write_Only,
+        Read_Write,
+    }
+
     public enum E_UIFunctionParamType
     {
         e_AI,
@@ -68,6 +94,7 @@ namespace InstrumentOperation.Common
 
     public struct S_UITransferFileProperties
     {
+        public string TransferName;
         public string XTBhPath;
         public string XTBCPath;
         public string XTBdPath;
@@ -150,9 +177,9 @@ namespace InstrumentOperation.Common
         public string serialNum { get; set; }
         public string paramName { get; set; }
         public E_UITransferParamType paramType { get; set; }
-        public string itemType { get; set; }
+        public E_UITransferItemType itemType { get; set; }
         public string unit { get; set; }
-        public string rwPriority { get; set; }
+        public E_UITransferPriorityType rwPriority { get; set; }
         public string VIEW1 { get; set; }
         public string VIEW2 { get; set; }
         public string VIEW3 { get; set; }

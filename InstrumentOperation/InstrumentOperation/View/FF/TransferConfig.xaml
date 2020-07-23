@@ -31,6 +31,16 @@
                 <x:Type TypeName="typecommon:E_UITransferParamType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <ObjectDataProvider x:Key="TransferItemType" MethodName="GetNames" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="typecommon:E_UITransferItemType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="TransferRWType" MethodName="GetNames" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="typecommon:E_UITransferPriorityType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Page.Resources>
     <Grid>
         <hc:TabControl HorizontalAlignment="Stretch" Margin="20,20,20,100" Style="{StaticResource TabControlInLine}" VerticalAlignment="Stretch" 
@@ -43,7 +53,7 @@
             <TabControl.ContentTemplate>
                 <DataTemplate>
                     <UniformGrid Background="{DynamicResource PrimaryBrush}" Name="Panel">
-                        <DataGrid Name="dataGrid" Grid.Row="0" HorizontalContentAlignment="Center" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="false"  ItemsSource="{Binding tabContent,Mode=TwoWay}" CanUserAddRows="True" HorizontalAlignment="Center">
+                        <DataGrid Name="dataGrid" Grid.Row="0" HorizontalContentAlignment="Center" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="false"  ItemsSource="{Binding tabContent,Mode=TwoWay}" CanUserAddRows="True" HorizontalAlignment="Center" HorizontalScrollBarVisibility="Visible">
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
@@ -52,17 +62,16 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="{StaticResource SerialNum}" Width="*" Binding="{Binding serialNum}"/>
                                 <DataGridTextColumn Header="{StaticResource Para_Name}" Width="2*" Binding="{Binding paramName}"/>
-                                <DataGridTemplateColumn  Header="{StaticResource Para_Type}" Width="2*" >
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <hc:ComboBox ItemsSource="{Binding Source={StaticResource TransferParamType}}"          HorizontalAlignment="Stretch" Width="100">
-                                            </hc:ComboBox>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="{StaticResource Para_List}" Width="*" Binding="{Binding itemType}"/>
+                                <DataGridComboBoxColumn  Header="{StaticResource Para_Type}" Width="1.5*"  TextBinding="{Binding paramType}"
+                                    ItemsSource="{Binding Source={StaticResource TransferParamType}}" SelectedItemBinding="{Binding paramType,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">       
+                                </DataGridComboBoxColumn>
+                                <DataGridComboBoxColumn  Header="{StaticResource Para_List}" Width="1.5*"  TextBinding="{Binding itemType}"
+                                    ItemsSource="{Binding Source={StaticResource TransferItemType}}" SelectedItemBinding="{Binding itemType,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                </DataGridComboBoxColumn>
                                 <DataGridTextColumn Header="{StaticResource Unit}" Width="*" Binding="{Binding unit}"/>
-                                <DataGridTextColumn Header="{StaticResource Pro_IO}" Width="*" Binding="{Binding rwPriority}"/>
+                                <DataGridComboBoxColumn  Header="{StaticResource Pro_IO}" Width="2*"  TextBinding="{Binding rwPriority}"
+                                    ItemsSource="{Binding Source={StaticResource TransferRWType}}" SelectedItemBinding="{Binding rwPriority,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                </DataGridComboBoxColumn>
                                 <DataGridTextColumn Header="{StaticResource VIEW_1}" Width="*" Binding="{Binding VIEW1}"/>
                                 <DataGridTextColumn Header="{StaticResource VIEW_2}" Width="*" Binding="{Binding VIEW2}"/>
                                 <DataGridTextColumn Header="{StaticResource VIEW_3}" Width="*" Binding="{Binding VIEW3}"/>

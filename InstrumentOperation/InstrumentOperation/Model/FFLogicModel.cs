@@ -46,13 +46,13 @@ namespace InstrumentOperation.Model
             return false;
         }
 
-        public bool FFGenerateTransferCode(S_UITransferFileProperties path,S_UITransferItemInfo info)
+        public bool FFGenerateTransferCode(S_UITransferFileProperties properties,S_UITransferItemInfo info)
         {
             FFFile file = new FFFile();
-            S_TransferFilePath sFilePath= ConverterFileTypeUI.UITransferPath2File(path);
+            S_TransferFileProperties sFileProperties = ConverterFileTypeUI.UITransferPath2File(properties);
             S_TransferItemInfo sinfo=ConverterFileTypeUI.UITransferItemInfo2File(info); ;
 
-            file.FFGenerateTransferCode(sFilePath, sinfo);
+            file.FFGenerateTransferCode(sFileProperties, sinfo);
             return false;
         }
 

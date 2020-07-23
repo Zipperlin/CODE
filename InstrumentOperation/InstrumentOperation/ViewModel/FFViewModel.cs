@@ -14,6 +14,8 @@ using System.Windows.Data;
 using HandyControl.Data;
 using InstrumentOperation.Converter;
 using System.Diagnostics;
+using InstrumentOperation.View.PopDialog;
+using System.Threading;
 
 namespace InstrumentOperation.ViewModel
 {
@@ -324,6 +326,20 @@ namespace InstrumentOperation.ViewModel
             }
         }
 
+        private string _transferName;
+        public string TransferName
+        {
+            get
+            {
+                return _transferName;
+            }
+            set
+            {
+                _transferName = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private ObservableCollection<string> _transferParamTypeList;
         public ObservableCollection<string> TransferParamTypeList
         {
@@ -339,6 +355,25 @@ namespace InstrumentOperation.ViewModel
             set
             {
                 _transferParamTypeList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<string> _transferItemTypeList;
+        public ObservableCollection<string> TransferItemTypeList
+        {
+            get
+            {
+                if (_transferItemTypeList == null)
+                {
+                    _transferItemTypeList = new ObservableCollection<string>();
+
+                }
+                return _transferItemTypeList;
+            }
+            set
+            {
+                _transferItemTypeList = value;
                 OnPropertyChanged();
             }
         }
@@ -417,16 +452,38 @@ namespace InstrumentOperation.ViewModel
 
         public void InitFFStatus()
         {
-            SolutionPath = "D:\\项目文件\\仪表操作系统\\仪表操作系统项目\\DEMO_M0313\\DEMO";
-            DDSolutionPath= "D:\\项目文件\\仪表操作系统\\仪表操作系统项目\\DD_DEMO";
             bSetBackup = true;
+            SolutionPath = "D:\\项目文件\\仪表操作系统\\仪表操作系统项目\\DEMO_M0313\\DEMO";
+            DDSolutionPath = "D:\\项目文件\\仪表操作系统\\仪表操作系统项目\\DD_DEMO";
+            TransferName = "XTB";
+
+            Thread t = new Thread(BackupFiles);
+            t.Start();
+
+            ClearFFStatus();
             AddTransferModule();
 
             AONum = 1;
             DINum = 1;
             DONum = 1;
-            PIDNum = 1;
+            PIDNum = 1;   
+        }
 
+        public void ClearFFStatus()
+        {
+            if(null!= TransferList)
+            {
+                TransferList.Clear();
+            }
+
+            if (null != FuncItemList)
+            {
+                FuncItemList.Clear();
+            }
+        }
+
+        private void BackupFiles()
+        {
             if (bSetBackup)
             {
                 string sourcePath = SolutionPath;
@@ -470,6 +527,8 @@ namespace InstrumentOperation.ViewModel
             ffLogicModel.FFGenerateBasicCode(filePath, info);
         }
 
+        private static int TransferItemNum = 11;
+
         private void GenerateTransferCode()
         {
             string fileXTBHPath= NewSolutionPath + "\\Src\\X_TB.h";
@@ -481,12 +540,13 @@ namespace InstrumentOperation.ViewModel
             
             for(int i=0;i< TransferList.Count;i++)
             {
-                NexfileXTBHPath = NewSolutionPath + "\\Src\\X_TB" + (i+1).ToString()+".h" ;
-                NewfileXTBCPath = NewSolutionPath + "\\Src\\X_TBc" + (i+1).ToString() + ".c";
+                NexfileXTBHPath = NewSolutionPath + "\\Src\\" + TransferList[i].tabHeader+ ".h" ;
+                NewfileXTBCPath = NewSolutionPath + "\\Src\\" + TransferList[i].tabHeader + ".c";
 
                 CommonFileOperator.copyFile(fileXTBHPath, NexfileXTBHPath, true);
                 CommonFileOperator.copyFile(fileXTBCPath, NewfileXTBCPath, true);
 
+                TransferList[i].sFilePath.TransferName = TransferName;
                 TransferList[i].sFilePath.XTBCPath = NewfileXTBCPath;
                 TransferList[i].sFilePath.XTBhPath = NexfileXTBHPath;
                 TransferList[i].sFilePath.XTBdPath = NewfileXTBdPath;
@@ -497,7 +557,7 @@ namespace InstrumentOperation.ViewModel
                 int i = 0;
                 foreach(S_UITransferItemInfo item in var.tabContent)
                 {
-                    if(i>11)
+                    if(i> TransferItemNum)
                     {
                         ffLogicModel.FFGenerateTransferCode(var.sFilePath, item);
                     }
@@ -559,9 +619,31 @@ namespace InstrumentOperation.ViewModel
             ffLogicModel.FFGenerateDDCode(uiFileProperties);
         }
 
+
+        TransferPropertiesDialog transferPropertiesDialog;
         public ICommand Command_AddTransferModule => new DelegateCommand(obj =>
         {
+            transferPropertiesDialog = new TransferPropertiesDialog();
+            transferPropertiesDialog.Show();
+            //AddTransferModule();
+        });
+
+        public ICommand Command_SetTransferName => new DelegateCommand(obj =>
+        {
             AddTransferModule();
+
+            if (null != transferPropertiesDialog)
+            {
+                transferPropertiesDialog.Close();
+            }
+        });
+
+        public ICommand Command_CloseTransferPropertiesDialog => new DelegateCommand(obj =>
+        {
+            if(null!= transferPropertiesDialog)
+            {
+                transferPropertiesDialog.Close();
+            }
         });
 
         private void AddTransferModule()
@@ -571,7 +653,8 @@ namespace InstrumentOperation.ViewModel
             string sNum = icount.ToString();
 
             S_TransferTabList slist = new S_TransferTabList();
-            slist.tabHeader = "转换块" + sNum;
+            //slist.tabHeader = "转换块" + sNum;
+            slist.tabHeader = TransferName;
             slist.tabContent = new ObservableCollection<S_UITransferItemInfo>();
 
             configModel = new ConfigLogicModel();

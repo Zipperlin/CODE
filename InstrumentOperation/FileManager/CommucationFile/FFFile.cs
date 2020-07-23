@@ -25,25 +25,25 @@ namespace InstrumentOperation.FileManager.CommucationFile
             return false;
         }
 
-        public bool FFGenerateTransferCode(S_TransferFilePath filePath,S_TransferItemInfo info)
+        public bool FFGenerateTransferCode(S_TransferFileProperties fileProperties,S_TransferItemInfo info)
         {
             m_file = filefactory.createFile(E_FileType.e_FF_File);
-            if (m_file.IsFileExisted(filePath.XTBhPath))
+            if (m_file.IsFileExisted(fileProperties.XTBhPath))
             {
-                string[] content = m_file.ReadFile2Array(filePath.XTBhPath);
-                ReplaceTransferInfo(E_TransferFileType.e_XTBH,content, info, filePath.XTBhPath);
+                string[] content = m_file.ReadFile2Array(fileProperties.XTBhPath);
+                ReplaceTransferInfo(E_TransferFileType.e_XTBH,content, info, fileProperties);
             }
 
-            if (m_file.IsFileExisted(filePath.XTBCPath))
+            if (m_file.IsFileExisted(fileProperties.XTBCPath))
             {
-                string[] content = m_file.ReadFile2Array(filePath.XTBCPath);
-                ReplaceTransferInfo(E_TransferFileType.e_XTBC, content, info, filePath.XTBCPath);
+                string[] content = m_file.ReadFile2Array(fileProperties.XTBCPath);
+                ReplaceTransferInfo(E_TransferFileType.e_XTBC, content, info, fileProperties);
             }
 
-            if (m_file.IsFileExisted(filePath.XTBdPath))
+            if (m_file.IsFileExisted(fileProperties.XTBdPath))
             {
-                string[] content = m_file.ReadFile2Array(filePath.XTBdPath);
-                ReplaceTransferInfo(E_TransferFileType.e_XTBD,content, info, filePath.XTBdPath);
+                string[] content = m_file.ReadFile2Array(fileProperties.XTBdPath);
+                ReplaceTransferInfo(E_TransferFileType.e_XTBD,content, info, fileProperties);
             }
             return false;
         }
@@ -83,41 +83,48 @@ namespace InstrumentOperation.FileManager.CommucationFile
         }
         private void ReplaceBasicInfo(string[] content, S_ManufactureInfo info, string NewfilePath)
         {
-            for (int i = 0; i < content.Length; i++)
+            try
             {
-                if (content[i].Contains("FB_VFD_VENDOR_NAME"))
+                for (int i = 0; i < content.Length; i++)
                 {
-                    content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.ManufactureName);
-                }
-                else if (content[i].Contains("ulManufacId"))
-                {
-                    content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.ManufactureID);
-                }
-                else if (content[i].Contains("uDevType"))
-                {
-                    content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.DevType);
-                }
-                else if (content[i].Contains("aucDevice_ID[32]"))
-                {
-                    content[i] = m_file.replacestring(content[i], "\"[^\"]*\"", "\""+info.DevID+ "\"");
-                }
-                else if (content[i].Contains("USIGN8 SM_DEFAULT_PD_TAG[]"))
-                {
-                    Regex re = new Regex("(?<=\").*?(?=\")", RegexOptions.None);
-                    content[i] = re.Replace(content[i], info.DevName);
-                }
-                else
-                {
+                    if (content[i].Contains("FB_VFD_VENDOR_NAME"))
+                    {
+                        content[i] = m_file.replacestring(content[i], @"(?<="")(\w+?)(?="")", info.ManufactureName);
+                    }
+                    else if (content[i].Contains("ulManufacId"))
+                    {
+                        content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.ManufactureID);
+                    }
+                    else if (content[i].Contains("uDevType"))
+                    {
+                        content[i] = m_file.replacestring(content[i], @"(\w+?)(?=,)", info.DevType);
+                    }
+                    else if (content[i].Contains("aucDevice_ID[32]"))
+                    {
+                        content[i] = m_file.replacestring(content[i], "\"[^\"]*\"", "\"" + info.DevID + "\"");
+                    }
+                    else if (content[i].Contains("USIGN8 SM_DEFAULT_PD_TAG[]"))
+                    {
+                        Regex re = new Regex("(?<=\").*?(?=\")", RegexOptions.None);
+                        content[i] = re.Replace(content[i], info.DevName);
+                    }
+                    else
+                    {
 
+                    }
                 }
             }
+            catch(Exception e)
+            {
 
+            }
+            
             m_file.WriteFile(NewfilePath, content);
         }
 
         private const string tabArray = "\t\t\t\t\t\t\t\t";
 
-        private void ReplaceTransferInfo(E_TransferFileType type, string[] content, S_TransferItemInfo info, string NewfilePath)
+        private void ReplaceTransferInfo(E_TransferFileType type, string[] content, S_TransferItemInfo info, S_TransferFileProperties properties)
         {
             switch (type)
             {
@@ -130,16 +137,18 @@ namespace InstrumentOperation.FileManager.CommucationFile
                         }
                         if (content[i].Contains("X_TB"))
                         {
-                            content[i] = m_file.replacestring(content[i], @"X_TB", "MTB");
+                            content[i] = m_file.replacestring(content[i], @"X_TB", properties.TransferName);
                         }
                     }
+
+                    m_file.WriteFile(properties.XTBhPath, content);
                     break;
                 case E_TransferFileType.e_XTBC:
                     for (int i = 0; i < content.Length; i++)
                     {
                         if (content[i].Contains("X_TB_Check_Status_Mode( X_TB * psModBlk )"))
                         {
-                            content[i] = m_file.replacestring(content[i], @"X_TB", "MTB");
+                            content[i] = m_file.replacestring(content[i], @"X_TB", properties.TransferName);
                         }
                         else if(content[i].Contains("psModBlk->sMassFlow.ucStatus = SUB_DEVICE_FAILURE | (psModBlk->sMassFlow.ucStatus & 0x03);")
                             ||content[i].Contains("psModBlk->sMassFlow.ucStatus = GOOD_C;")
@@ -183,10 +192,16 @@ namespace InstrumentOperation.FileManager.CommucationFile
 
                             }
                         }
+                        else if (content[i].Contains("case 13: /* sMassFlow */"))
+                        {
+                            content[i] = m_file.addstring(content[i], "\n\t" + info.paramType.ToString() + tabArray + info.paramName + ";");
+                        }
                         else
                         {
 
                         }
+
+                        m_file.WriteFile(properties.XTBCPath, content);
                     }
 
                     //for (int i = 0; i < content.Length; i++)
@@ -201,7 +216,7 @@ namespace InstrumentOperation.FileManager.CommucationFile
                 case E_TransferFileType.e_XTBD:
                     break;
             }
-            m_file.WriteFile(NewfilePath, content);
+           
         }
 
         private void ReplaceFuncInfo(E_FuncFileType type, string[] content, S_FuncItemInfo info, S_FunctionFileProperties fileProperties)

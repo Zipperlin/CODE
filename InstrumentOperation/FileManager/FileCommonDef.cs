@@ -18,6 +18,23 @@ namespace FileManager
         FLOAT,
     }
 
+    public enum E_TransferItemType
+    {
+        AI,
+        AO,
+        DI,
+        DO,
+        UNIT,
+        NULL,
+    }
+
+    public enum E_TransferPriorityType
+    {
+        Read_Only,
+        Write_Only,
+        Read_Write,
+    }
+
     public struct S_ManufactureInfo
     {
         public string ManufactureName;
@@ -27,8 +44,9 @@ namespace FileManager
         public string DevName;
     }
 
-    public struct S_TransferFilePath
+    public struct S_TransferFileProperties
     {
+        public string TransferName;
         public string XTBhPath;
         public string XTBCPath;
         public string XTBdPath;
@@ -58,7 +76,7 @@ namespace FileManager
         public string FFSeriesTBDllPath;
 
         public S_ManufactureInfo ManufactureInfo;
-        public S_TransferFilePath TransferFilePath;
+        public S_TransferFileProperties TransferFileProperties;
         public S_FunctionFileProperties FunctionFileProperties;
     }
 
@@ -100,9 +118,9 @@ namespace FileManager
         public string serialNum { get; set; }
         public string paramName { get; set; }
         public E_TransferParamType paramType { get; set; }
-        public string itemType { get; set; }
+        public E_TransferItemType itemType { get; set; }
         public string unit { get; set; }
-        public string rwPriority { get; set; }
+        public E_TransferPriorityType rwPriority { get; set; }
         public string VIEW1 { get; set; }
         public string VIEW2 { get; set; }
         public string VIEW3 { get; set; }

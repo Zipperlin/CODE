@@ -232,6 +232,9 @@
     <Compile Include="View\PopDialog\Module_Select.xaml.cs">
       <DependentUpon>Module_Select.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PopDialog\TransferPropertiesDialog.xaml.cs">
+      <DependentUpon>TransferPropertiesDialog.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -300,6 +303,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\PopDialog\TransferPropertiesDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -361,6 +368,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\images\控制.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\config\initconfig.xml" />
+    <Resource Include="Resources\config\settingconfig.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net451\System.Runtime.WindowsRuntime.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.4.7.0\build\net451\System.Runtime.WindowsRuntime.targets')" />
